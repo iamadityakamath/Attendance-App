@@ -341,7 +341,7 @@ public class employee_checkinout extends AppCompatActivity {
             String city = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
             String postalcode = addresses.get(0).getPostalCode();
-            full_address = address+", "+area+", "+city+", "+country+", "+postalcode;
+            full_address = address;
             LocationAdress.setText(full_address);
 
         } catch (IOException e) {
