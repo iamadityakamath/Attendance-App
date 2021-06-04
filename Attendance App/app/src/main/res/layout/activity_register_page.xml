@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".Register_page">
+
+<!--    <ImageView-->
+<!--        android:id="@+id/employer_addemplyee_pic"-->
+<!--        android:layout_width="306dp"-->
+<!--        android:layout_height="152dp"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/ic_register_pg_img" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView3"-->
+<!--        android:layout_width="340dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        android:fontFamily="sans-serif-black"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Welcome Onboard!"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.492"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_addemplyee_pic" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/employer_add_name"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/input_background_shape"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint=" Name"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:textColor="#FBFBFB"-->
+<!--        android:textColorHint="#FBFBFB"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView3" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/employer_add_password"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:background="@drawable/input_background_shape"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="Password"-->
+<!--        android:inputType="textPassword"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textColorHint="#FFFFFF"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_phone" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/employer_add_phone"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:background="@drawable/input_background_shape"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="Phone no."-->
+<!--        android:inputType="phone"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textColorHint="#FFFFFF"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_email" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/employer_add_email"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:background="@drawable/input_background_shape"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="Email"-->
+<!--        android:inputType="textEmailAddress"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textColorHint="#FFFFFF"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.495"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_name" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/employer_add_regesterbutton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="48dp"-->
+<!--        android:shadowColor="#000000"-->
+<!--        android:text="Register"-->
+<!--        android:textColor="#008FFF"-->
+<!--        android:textColorHighlight="#000000"-->
+<!--        android:textColorHint="#000000"-->
+<!--        android:textColorLink="@color/black"-->
+<!--        app:backgroundTint="#000000"-->
+<!--        app:cornerRadius="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_password"-->
+<!--        app:layout_constraintVertical_bias="0.85"-->
+<!--        app:rippleColor="#FFFFFF"-->
+<!--        app:strokeColor="#0C0707" />-->
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/Regester_progressBar"-->
+<!--        style="?android:attr/progressBarStyle"-->
+<!--        android:layout_width="34dp"-->
+<!--        android:layout_height="42dp"-->
+<!--        android:layout_marginStart="188dp"-->
+<!--        android:layout_marginLeft="188dp"-->
+<!--        android:layout_marginTop="9dp"-->
+<!--        android:layout_marginEnd="189dp"-->
+<!--        android:layout_marginRight="189dp"-->
+<!--        android:layout_marginBottom="7dp"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_regesterbutton" />-->
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/regester_employee_checkBox"-->
+<!--        android:layout_width="111dp"-->
+<!--        android:layout_height="49dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="Employee"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textCursorDrawable="@color/white"-->
+<!--        app:buttonTint="#000000"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/regester_employer_checkBox"-->
+<!--        app:layout_constraintHorizontal_bias="0.433"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_password" />-->
+
+<!--    <CheckBox-->
+<!--        android:id="@+id/regester_employer_checkBox"-->
+<!--        android:layout_width="109dp"-->
+<!--        android:layout_height="51dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginEnd="52dp"-->
+<!--        android:layout_marginRight="52dp"-->
+<!--        android:checked="false"-->
+<!--        android:text="Employer"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:textCursorDrawable="@color/white"-->
+<!--        app:buttonTint="#000000"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_password" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/regester_Go_to_login"-->
+<!--        android:layout_width="147dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginStart="27dp"-->
+<!--        android:layout_marginLeft="27dp"-->
+<!--        android:layout_marginTop="3dp"-->
+<!--        android:layout_marginEnd="14dp"-->
+<!--        android:layout_marginRight="14dp"-->
+<!--        android:layout_marginBottom="9dp"-->
+<!--        android:onClick="registertologin"-->
+<!--        android:text="ALready have an Account?"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/Regester_progressBar"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/employer_add_regesterbutton" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".Admin_addEmployer">
+
+    <ImageView
+        android:id="@+id/admin_addemplyee_pic"
+        android:layout_width="306dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_register_pg_img" />
+
+    <TextView
+        android:id="@+id/admin_add_textview"
+        android:layout_width="340dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="ADD EMPLOYER"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_addemplyee_pic" />
+    <EditText
+        android:id="@+id/admin_add_name"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint=" Name"
+        android:inputType="textPersonName"
+        android:textColor="#FBFBFB"
+        android:textColorHint="#FBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_textview" />
+
+  <EditText
+      android:id="@+id/admin_add_password"
+      android:layout_width="300dp"
+      android:layout_height="40dp"
+      android:layout_marginTop="24dp"
+      android:background="@drawable/input_background_shape"
+      android:ems="10"
+      android:gravity="center"
+      android:hint="Password"
+      android:inputType="text"
+      android:text="Pass@123"
+      android:textColor="#FFFFFF"
+      android:textColorHint="#FFFFFF"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.495"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/admin_add_name" />
+
+    <EditText
+        android:id="@+id/admin_add_phone"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Phone no."
+        android:inputType="phone"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_password" />
+
+    <EditText
+        android:id="@+id/admin_add_email"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_phone" />
+
+    <Button
+        android:id="@+id/admin_add_regesterbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="92dp"
+        android:shadowColor="#000000"
+        android:text="Register"
+        android:textColor="#008FFF"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="@color/black"
+        app:backgroundTint="#000000"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#FFFFFF"
+        app:strokeColor="#0C0707" />
+
+
+    <ProgressBar
+        android:id="@+id/Regester_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginLeft="188dp"
+        android:layout_marginEnd="189dp"
+        android:layout_marginRight="189dp"
+        android:layout_marginBottom="12dp"
+        android:indeterminateTint="@color/black"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/admin_add_regesterbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar1"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="411dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar" />
+
+    <ImageView
+        android:id="@+id/admin_home_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="admin_to_adminhome"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
+        app:layout_constraintVertical_bias="0.39"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageView
+        android:id="@+id/admin_calendar_bitton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
+        app:layout_constraintStart_toEndOf="@+id/admin_add_user_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+    <ImageView
+        android:id="@+id/admin_Profile_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/admin_calendar_bitton"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/admin_add_user_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
+        app:layout_constraintStart_toEndOf="@+id/admin_home_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
+        app:layout_constraintVertical_bias="0.4"
+        app:srcCompat="@drawable/ic_baseline_person_add_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

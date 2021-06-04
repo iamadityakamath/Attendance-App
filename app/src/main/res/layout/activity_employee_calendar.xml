@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".employee_calendar">
+
+    <!-- Add CalenderView to display the Calender -->
+
+    <TextView
+        android:id="@+id/Holidaylist_txtx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="Holiday List"
+        android:textColor="@android:color/background_dark"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="326dp"
+        android:layout_height="401dp"
+        android:background="@drawable/blank_white_box"
+        android:hapticFeedbackEnabled="true"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Holidaylist_txtx"
+        app:layout_constraintVertical_bias="0.24">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:addStatesFromChildren="true"
+            android:animationCache="true"
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:clipChildren="true"
+            android:clipToPadding="true"
+            android:fitsSystemWindows="false"
+            android:focusable="true"
+            android:focusedMonthDateColor="#28ABCC"
+            android:hapticFeedbackEnabled="true"
+            android:selectedDateVerticalBar="@color/black"
+            android:selectedWeekBackgroundColor="#B2D13F"
+            android:showWeekNumber="true"
+            android:unfocusedMonthDateColor="#28ABCC"
+            android:weekNumberColor="#CD1717"
+            android:weekSeparatorLineColor="#28ABCC" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/employee_view_pdf"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:background="@drawable/input_background_shape"
+        android:gravity="center"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="employee_calendartoviewholidaypdf"
+        android:text="View Holiday List"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#730000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.263" />
+
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar" />
+
+    <ImageView
+        android:id="@+id/employer_home_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="employee_calendartohome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.238"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageView
+        android:id="@+id/employer_calendar_bitton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toStartOf="@+id/employer_Profile_button"
+        app:layout_constraintStart_toEndOf="@+id/employer_home_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.238"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+    <ImageView
+        android:id="@+id/employer_Profile_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:onClick="employee_calendartoprofile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.058"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

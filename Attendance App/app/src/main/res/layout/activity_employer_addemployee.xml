@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".Employer_addemployee">
+
+    <ImageView
+        android:id="@+id/employer_addemplyee_pic"
+        android:layout_width="306dp"
+        android:layout_height="152dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_register_pg_img" />
+
+    <TextView
+        android:id="@+id/employer_textview"
+        android:layout_width="340dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="sans-serif-black"
+        android:gravity="center"
+        android:text="ADD EMPLOYEE"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_addemplyee_pic" />
+
+    <EditText
+        android:id="@+id/employer_add_name"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint=" Name"
+        android:inputType="textPersonName"
+        android:textColor="#FBFBFB"
+        android:textColorHint="#FBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_textview" />
+
+    <EditText
+        android:id="@+id/employer_add_password"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_phone" />
+
+    <EditText
+        android:id="@+id/employer_add_phone"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Phone no."
+        android:inputType="phone"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_email" />
+
+    <EditText
+        android:id="@+id/employer_add_email"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_name" />
+
+    <Button
+        android:id="@+id/employer_add_regesterbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:shadowColor="#000000"
+        android:text="Register"
+        android:textColor="#008FFF"
+        android:textColorHighlight="#000000"
+        android:textColorHint="#000000"
+        android:textColorLink="@color/black"
+        app:backgroundTint="#000000"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_password"
+        app:layout_constraintVertical_bias="0.393"
+        app:rippleColor="#FFFFFF"
+        app:strokeColor="#0C0707" />
+
+    <ProgressBar
+        android:id="@+id/Regester_progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="34dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginLeft="188dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="189dp"
+        android:layout_marginRight="189dp"
+        android:layout_marginBottom="7dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_regesterbutton" />
+
+    <CheckBox
+        android:id="@+id/regester_employee_checkBox"
+        android:layout_width="111dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:text="Employee"
+        android:textColor="#FFFFFF"
+        android:textCursorDrawable="@color/white"
+        android:visibility="invisible"
+        app:buttonTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/regester_employer_checkBox"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_password" />
+
+    <CheckBox
+        android:id="@+id/regester_employer_checkBox"
+        android:layout_width="109dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:checked="false"
+        android:text="Employer"
+        android:textColor="#FFFFFF"
+        android:textCursorDrawable="@color/white"
+        android:visibility="invisible"
+        app:buttonTint="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_add_password" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="411dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/employer_home_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:hapticFeedbackEnabled="true"
+        android:onClick="employeraddemployee_to_employer_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.38"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageView
+        android:id="@+id/employer_calendar_bitton"
+        android:layout_width="33dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:onClick="employeraddemployee_to_employer_calender"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+        app:layout_constraintStart_toEndOf="@+id/employer_add_user_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+    <ImageView
+        android:id="@+id/employer_Profile_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="4dp"
+
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:onClick="employeraddemployee_to_employer_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toEndOf="@+id/employer_calendar_bitton"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.235"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/employer_add_user_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginLeft="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/employer_home_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.366"
+        app:srcCompat="@drawable/ic_baseline_person_add_24" />
+</androidx.constraintlayout.widget.ConstraintLayout>

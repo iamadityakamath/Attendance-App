@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".employee_home">
+
+
+    <ImageView
+        android:id="@+id/employee_home_profilepic"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.058"
+        app:srcCompat="@drawable/ic_employee_profile_home_img" />
+
+    <Button
+        android:id="@+id/Checkin_button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:fontFamily="sans-serif-black"
+        android:onClick="employee_Checkinoutpg"
+        android:text="Check in/out"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#F3F3F3"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="#000000"
+        app:cornerRadius="90dp"
+        app:elevation="5dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employee_home_profilepic"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Cardview1"
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:fadingEdgeLength="12dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="50dp"
+        app:cardMaxElevation="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Checkin_button">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/employee_home_yearly_total"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/employee_home_yearly_leaves"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/employee_home_yearly_total"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/employee_home_yearly_present"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintStart_toEndOf="@+id/employee_home_yearly_leaves"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/Montly_Attendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="sans-serif-black"
+                android:includeFontPadding="true"
+                android:text="Yearly Attendance"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/employee_home_yearly_leaves"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.146"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.842" />
+
+            <TextView
+                android:id="@+id/Mont_total_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="Total no. of days"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_yearly_total"
+                app:layout_constraintVertical_bias="0.421" />
+
+            <TextView
+                android:id="@+id/Mont_leave_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:gravity="center"
+                android:text="Leaves"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Mont_total_txt"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_yearly_leaves"
+                app:layout_constraintVertical_bias="0.476" />
+
+            <TextView
+                android:id="@+id/monthly_present_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Present"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.601"
+                app:layout_constraintStart_toEndOf="@+id/Mont_leave_txt"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_yearly_present"
+                app:layout_constraintVertical_bias="0.476" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Cardview2"
+        android:layout_width="375dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:fadingEdgeLength="12dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="50dp"
+        app:cardMaxElevation="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Checkin_button">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/employee_home_monthly_total"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/employee_home_monthly_leave"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/employee_home_monthly_total"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/employee_home_monthly_present"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginRight="36dp"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/circular_textview_drawable"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/Yearly_Attendance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif-black"
+                android:includeFontPadding="true"
+                android:text="Monthly Attendance"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.146"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/yearly_total_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:text="Total no. of days"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_monthly_total"
+                app:layout_constraintVertical_bias="0.21" />
+
+            <TextView
+                android:id="@+id/yearly_leave_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="44dp"
+                android:layout_marginLeft="44dp"
+                android:gravity="center"
+                android:text="Leaves"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/yearly_total_txt"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_monthly_leave"
+                app:layout_constraintVertical_bias="0.285" />
+
+            <TextView
+                android:id="@+id/yearly_present_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Present"
+                android:textColor="#079CFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.618"
+                app:layout_constraintStart_toEndOf="@+id/yearly_leave_txt"
+                app:layout_constraintTop_toBottomOf="@+id/employee_home_monthly_present"
+                app:layout_constraintVertical_bias="0.285" />
+
+            <Spinner
+                android:id="@+id/employee_home_month_spinner"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="left"
+                android:padding="0dp"
+                android:textColor="#000"
+                android:textSize="0.5sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/employee_home_monthly_present"
+                app:layout_constraintEnd_toStartOf="@+id/employee_home_year_spinner"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.15" />
+
+            <Spinner
+                android:id="@+id/employee_home_year_spinner"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:gravity="left"
+                android:hapticFeedbackEnabled="true"
+                android:padding="0dp"
+                android:textColor="#000"
+                android:textSize="0.05sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/employee_home_monthly_present"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.153" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/employee_seeAttendancebutton"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="employee_home_to_SeeAttendance"
+        android:text="Download Attendance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#F3F3F3"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#000000"
+        app:cornerRadius="90dp"
+        app:elevation="5dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Cardview2" />
+
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar" />
+
+    <ImageView
+        android:id="@+id/employer_home_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:hapticFeedbackEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/bottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.238"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageView
+        android:id="@+id/employer_calendar_bitton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:onClick="employee_hometocalendar"
+        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toStartOf="@+id/employer_Profile_button"
+        app:layout_constraintStart_toEndOf="@+id/employer_home_button"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.238"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+    <ImageView
+        android:id="@+id/employer_Profile_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:onClick="employee_home_to_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintVertical_bias="0.238"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

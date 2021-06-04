@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".employee_edit_profile">
+
+
+    <EditText
+        android:id="@+id/empoyee_edit_profile_name"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.474" />
+
+    <EditText
+        android:id="@+id/empoyee_edit_profile_phoneno"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:textColor="#F4F4F4"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empoyee_edit_profile_name"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/empoyee_edit_profile_password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="phone"
+        android:onClick="reset_employeee_pass"
+        android:text="Password Reset"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empoyee_edit_profile_phoneno"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/employee_save_edit_profile_button"
+        android:layout_width="100dp"
+        android:layout_height="35dp"
+        android:background="@drawable/input_background_shape"
+        android:onClick="employee_edit_profile_to_profile"
+        android:text="Save"
+        android:textColor="#000000"
+        app:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/empoyee_edit_profile_password"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <ImageView
+        android:id="@+id/wmployee_edit_profilepic"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginLeft="138dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginRight="144dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_employee_profile_home_img" />
+</androidx.constraintlayout.widget.ConstraintLayout>

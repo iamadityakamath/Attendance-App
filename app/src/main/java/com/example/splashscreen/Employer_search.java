@@ -1,0 +1,163 @@
+package com.example.splashscreen;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.SearchView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Employer_search extends AppCompatActivity {
+    private String userID;
+    private RecyclerView mRecyclerView;
+    private ExampleAdapter mAdapter;
+    private ArrayList<ExampleItem> mExampleList;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private ExampleItem exampleItem;
+    private String isUser;
+
+
+    FirebaseAuth fAuth;
+    FirebaseFirestore fstore;
+    private Object ExampleItem;
+
+    public Employer_search(ArrayList<com.example.splashscreen.ExampleItem> mExampleList) {
+        this.mExampleList = mExampleList;
+    }
+
+    public Employer_search() {
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_employer_search);
+        fAuth = FirebaseAuth.getInstance();
+        fstore = FirebaseFirestore.getInstance();
+        userID = fAuth.getCurrentUser().getUid();
+
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+
+        mExampleList = new ArrayList<>();
+        mAdapter = new ExampleAdapter(mExampleList);
+
+        mRecyclerView.setAdapter(mAdapter);
+
+        fstore.collection("Employer").document(userID).collection("Employees").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if(!queryDocumentSnapshots.isEmpty()){
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for(DocumentSnapshot d : list){
+                                ExampleItem p = d.toObject(ExampleItem.class);
+                                mExampleList.add(p);
+
+                            }
+                            mAdapter.notifyDataSetChanged();
+
+                        }
+                    }
+                });
+
+
+        createExampleList();
+        buildRecyclerView();
+
+    }
+
+    private void createExampleList() {
+
+    }
+
+    public void changeItem(int position, String text) {
+        mExampleList.get(position).getFname();
+        mAdapter.notifyItemChanged(position);
+    }
+
+
+
+    public void buildRecyclerView(){
+        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new ExampleAdapter(mExampleList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        /*mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                //startActivity( new Intent(MainActivity.this, EmployerSeeEmployeeDetails.class));
+                Intent intent = new Intent(getApplicationContext(), EmployerSeeEmployeeDetails.class);
+                startActivity(intent);
+                //changeItem(position,"Clicked");
+            }
+        });*/
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    ///Intent
+    public void employerhome_to_addemployee(View v) {
+        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Employer_addemployee.class);
+        startActivity(intent);
+        finish();
+    }
+    public void employerhome_to_employer_profile(View v) {
+        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Employer_profile.class);
+        startActivity(intent);
+        finish();
+    }
+    public void employerhome_to_employer_calender(View v) {
+        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, Employer_calender.class);
+        startActivity(intent);
+        finish();
+    }
+}

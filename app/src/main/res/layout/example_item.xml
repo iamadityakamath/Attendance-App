@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:padding="8dp"
+    app:cardCornerRadius="100dp"
+    android:layout_marginRight="0dp"
+    android:layout_marginLeft="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="4dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/Employee_Name"
+            android:layout_width="292dp"
+            android:layout_height="46dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="87dp"
+            android:layout_marginLeft="87dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="11dp"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:text="Name"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" />
+
+        <ImageView
+            android:id="@+id/Employee_Pic"
+            android:layout_width="74dp"
+            android:padding="2dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_employee_profile_home_img" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
