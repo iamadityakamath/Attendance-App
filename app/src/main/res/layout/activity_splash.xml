@@ -9,14 +9,17 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="275dp"
-        android:layout_height="600dp"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.5"
+        app:layout_constraintVertical_bias="0.772"
         app:srcCompat="@drawable/ic_split_screen_img"
         tools:ignore="VectorDrawableCompat" />
 
@@ -24,8 +27,11 @@
         android:id="@+id/textView"
         android:layout_width="244dp"
         android:layout_height="103dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginRight="151dp"
         android:ellipsize="none"
         android:fontFamily="sans-serif-black"
         android:includeFontPadding="true"
@@ -37,15 +43,20 @@
         android:textSize="22sp"
         android:textStyle="normal|bold|italic"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:layout_marginBottom="150dp"
         android:fontFamily="serif"
         android:onClick="openloginpage"
         android:text="Get Started"
@@ -56,9 +67,9 @@
         app:iconTintMode="screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.304"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.702" />
+        app:layout_constraintVertical_bias="0.578" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

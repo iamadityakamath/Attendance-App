@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/employer_Dashboad"
+        android:icon="@drawable/ic_baseline_dashboard"
+        android:title="Dashboad" />
+
+    <item android:id="@+id/employer_add_user"
+        android:icon="@drawable/ic_baseline_person_add_24"
+        android:title="Add User" />
+
+    <item android:id="@+id/employer_home"
+        android:icon="@drawable/ic_search"
+        android:title="Home" />
+
+    <item android:id="@+id/employer_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
+        android:title="Calender" />
+
+
+    <item android:id="@+id/employer_Profile"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Profile" />
+
+
+
+</menu>

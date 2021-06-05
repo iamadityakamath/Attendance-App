@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -68,6 +71,33 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         employee_home_img = findViewById(R.id.employee_home_profilepic);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation2);
+        bottomNavigationView.setSelectedItemId(R.id.employee_home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employee_home:
+                        return true;
+
+                    case R.id.employee_profile:
+                        startActivity(new Intent(getApplicationContext(),employee_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_calendar:
+                        startActivity(new Intent(getApplicationContext(),employee_calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         employee_home_yearly_present = findViewById(R.id.employee_home_yearly_present);
         employee_home_yearly_total = findViewById(R.id.employee_home_yearly_total);
@@ -227,6 +257,8 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         Intent intent = new Intent(this, employee_profile.class);
         startActivity(intent);
     }
+
+
     public void employee_home_to_SeeAttendance(View v) {
         Intent intent = new Intent(this, employee_seeAttendance.class);
         intent.putExtra("userID", fAuth.getCurrentUser().getUid());

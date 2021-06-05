@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,7 +34,7 @@ public class splash extends AppCompatActivity {
 
         if(fAuth.getCurrentUser() != null) {
             userID = fAuth.getCurrentUser().getUid();
-
+            button.setVisibility(View.INVISIBLE);
             DocumentReference documentrefrence1 = fstore.collection("users").document(userID);
             documentrefrence1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override

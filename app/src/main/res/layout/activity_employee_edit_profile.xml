@@ -79,8 +79,8 @@
 
     <ImageView
         android:id="@+id/wmployee_edit_profilepic"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="144dp"
+        android:layout_height="149dp"
         android:layout_marginStart="138dp"
         android:layout_marginLeft="138dp"
         android:layout_marginTop="59dp"

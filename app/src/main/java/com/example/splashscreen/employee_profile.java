@@ -1,18 +1,22 @@
 package com.example.splashscreen;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -39,6 +43,33 @@ public class employee_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_profile);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation2);
+        bottomNavigationView.setSelectedItemId(R.id.employee_profile);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employee_home:
+                        startActivity(new Intent(getApplicationContext(),employee_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_profile:
+                        return true;
+
+                    case R.id.employee_calendar:
+                        startActivity(new Intent(getApplicationContext(),employee_calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
         profileImage = findViewById(R.id.employee_profilepic);
         fullname = findViewById(R.id.Employee_profile_Name);
@@ -88,20 +119,9 @@ public class employee_profile extends AppCompatActivity {
         intent.putExtra("phone",phone.getText().toString());
         startActivity(intent); }
 
-    public void employee_profile_to_home(View v) {
-        //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, employee_home.class);
-        startActivity(intent);
-    }
-    public void employee_profile_to_calendar(View v) {
-        //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, employee_calendar.class);
-        startActivity(intent);
-    }
     public void employee_profile_to_login(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),login_page.class));
-        finish();
     }
     public  void employee_Call(View v) {   Uri u = Uri.parse("tel: 12345678");
         Intent i = new Intent(Intent.ACTION_DIAL, u);
