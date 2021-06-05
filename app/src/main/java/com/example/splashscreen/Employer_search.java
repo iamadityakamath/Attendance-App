@@ -1,9 +1,11 @@
 package com.example.splashscreen;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,6 +51,43 @@ public class Employer_search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_search);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.employer_home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_calendar:
+                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_Profile:
+                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_home:
+                        return true;
+                }
+                return false;
+            }
+        });
+
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();

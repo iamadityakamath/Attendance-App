@@ -244,20 +244,21 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+        if (parent.getId() == R.id.employee_home_year_spinner) {
+            int year_pose = parent.getSelectedItemPosition();
+            String[] x = {"2021", "2022", "2023", "2024", "2025", "2026"};
+            selectedYear = x[year_pose];
+        }
+        else if (parent.getId() == R.id.employee_home_month_spinner) {
+            int c = (int) parent.getSelectedItemPosition() + 1;
+            selectedMonthPos = df.format(c); // 0009
+        }
     }
+
     public void employee_Checkinoutpg(View v) {
         Intent intent = new Intent(this, employee_checkinout.class);
         startActivity(intent);
     }
-    public void employee_hometocalendar(View v) {
-        Intent intent = new Intent(this, employee_calendar.class);
-        startActivity(intent);
-    }
-    public void employee_home_to_profile(View v) {
-        Intent intent = new Intent(this, employee_profile.class);
-        startActivity(intent);
-    }
-
 
     public void employee_home_to_SeeAttendance(View v) {
         Intent intent = new Intent(this, employee_seeAttendance.class);

@@ -121,7 +121,8 @@ public class employee_profile extends AppCompatActivity {
 
     public void employee_profile_to_login(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),login_page.class));
+        startActivity(new Intent(getApplicationContext(),login_page.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        finish();
     }
     public  void employee_Call(View v) {   Uri u = Uri.parse("tel: 12345678");
         Intent i = new Intent(Intent.ACTION_DIAL, u);

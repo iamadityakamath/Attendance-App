@@ -5,12 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -39,6 +42,42 @@ public class Employer_calender extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_calender);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.employer_calendar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_calendar:
+                        return true;
+
+                    case R.id.employer_Profile:
+                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_home:
+                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         calender = (CalendarView )findViewById(R.id.employee_calendarView);
         viewpdf = findViewById(R.id.employer_view_pdf);
@@ -96,24 +135,7 @@ public class Employer_calender extends AppCompatActivity {
         }
     }
 
-    public void employercalender_to_employer_home(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_home.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employercalender_to_employer_addeployee(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_addemployee.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employercalender_to_employer_profile(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_profile.class);
-        startActivity(intent);
-        finish();
-    }
+
     public void employee_calendartoviewholidaypdf(View v){
         //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, View_holiday_pdf.class);

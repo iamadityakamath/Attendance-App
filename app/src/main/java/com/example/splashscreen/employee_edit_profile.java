@@ -43,7 +43,7 @@ public class employee_edit_profile extends AppCompatActivity {
     String userID,Employer_UserID;
     ImageView change_profile_img;
     FirebaseFirestore fstore;
-    FirebaseUser user;
+    String user;
     StorageReference storagerefrence;
 
     @Override
@@ -66,6 +66,9 @@ public class employee_edit_profile extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
 
+
+
+
         StorageReference profileRef = storagerefrence.child("users/"+fAuth.getCurrentUser().getUid()+"/Profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -74,7 +77,7 @@ public class employee_edit_profile extends AppCompatActivity {
             }
         });
 
-        user = fAuth.getCurrentUser();
+
 
 
         //Change Profile picture
@@ -87,6 +90,7 @@ public class employee_edit_profile extends AppCompatActivity {
             }
         });
 
+
         /// Save the email and edit other parameters
         Save_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +101,32 @@ public class employee_edit_profile extends AppCompatActivity {
                 }
                 if (fAuth.getCurrentUser() != null) {
                     userID = fAuth.getCurrentUser().getUid();
+
+//                    DocumentReference documentrefrence3 = fstore.collection("Employer").document(userID);
+//                    documentrefrence3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                            if (documentSnapshot.getString("isEmployer") != null) {
+//                                Map<String, Object> edited1 = new HashMap<>();
+//                                edited1.put("fname", ename.getText().toString());
+//                                edited1.put("phone", ephone.getText().toString());
+//                                documentrefrence3.update(edited1).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void aVoid) {
+//                                        Toast.makeText(employee_edit_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }).addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(employee_edit_profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
+//
+//                        }
+//                    });
+
+
                     DocumentReference documentrefrence1 = fstore.collection("users").document(userID);
                     documentrefrence1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
@@ -119,6 +149,7 @@ public class employee_edit_profile extends AppCompatActivity {
                                     }
                                 });
                             }
+
                             DocumentReference df = fstore.collection("Employer").document(Employer_UserID).collection("Employees").document(userID);
                             df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
@@ -138,59 +169,36 @@ public class employee_edit_profile extends AppCompatActivity {
                         }
                     });
 
-                    DocumentReference documentrefrence2 = fstore.collection("Admin").document(userID);
-                    documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            Log.d("TAG", "onsucess" + documentSnapshot.getData());
-                            if (documentSnapshot.getString("isAdmin") != null) {
-                                Map<String, Object> edited2 = new HashMap<>();
-                                edited2.put("fname", ename.getText().toString());
-                                edited2.put("phone", ephone.getText().toString());
-                                documentrefrence2.update(edited2).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(employee_edit_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), Admin_home.class));
-                                        finish();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(employee_edit_profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                            ;
-                        }
-                    });
+//                    DocumentReference documentrefrence2 = fstore.collection("Admin").document(userID);
+//                    documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                            Log.d("TAG", "onsucess" + documentSnapshot.getData());
+//                            if (documentSnapshot.getString("isAdmin") != null) {
+//                                Map<String, Object> edited2 = new HashMap<>();
+//                                edited2.put("fname", ename.getText().toString());
+//                                edited2.put("phone", ephone.getText().toString());
+//                                documentrefrence2.update(edited2).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                                    @Override
+//                                    public void onSuccess(Void aVoid) {
+//                                        Toast.makeText(employee_edit_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+//                                        startActivity(new Intent(getApplicationContext(), Admin_home.class));
+//                                        finish();
+//                                    }
+//                                }).addOnFailureListener(new OnFailureListener() {
+//                                    @Override
+//                                    public void onFailure(@NonNull Exception e) {
+//                                        Toast.makeText(employee_edit_profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                                    }
+//                                });
+//                            }
+//                            ;
+//                        }
+//                    });
+//
 
-                    DocumentReference documentrefrence3 = fstore.collection("Employer").document(userID);
-                    documentrefrence3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            if (documentSnapshot.getString("isEmployer") != null) {
-                                Map<String, Object> edited = new HashMap<>();
-                                edited.put("fname", ename.getText().toString());
-                                edited.put("phone", ephone.getText().toString());
-                                documentrefrence3.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Toast.makeText(employee_edit_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(getApplicationContext(), employee_home.class));
-                                        finish();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(employee_edit_profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                            ;
-                        }
-                    });
                 }
+
             }
         });
         ename.setText(fullname);
@@ -249,10 +257,6 @@ public class employee_edit_profile extends AppCompatActivity {
             }
         });
     }
-    public void employee_edit_profile_to_profile(View v) {
-        Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, employee_profile.class);
-        startActivity(intent);
-    }
+
 
 }

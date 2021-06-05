@@ -3,11 +3,13 @@ package com.example.splashscreen;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -41,6 +44,44 @@ public class Employer_addemployee extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_addemployee);
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.employer_add_user);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        return true;
+
+                    case R.id.employer_calendar:
+                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_Profile:
+                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.employer_home:
+                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         button = findViewById(R.id.admin_add_regesterbutton);
         name = findViewById(R.id.admin_add_name);
         email = findViewById(R.id.admin_add_email);
@@ -223,24 +264,7 @@ public class Employer_addemployee extends AppCompatActivity {
         return true;
     }
 
-    public void employeraddemployee_to_employer_home(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_home.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employeraddemployee_to_employer_calender(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_calender.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employeraddemployee_to_employer_profile(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_profile.class);
-        startActivity(intent);
-        finish();
-    }
+
 
     private void senEmail(String fnmame, String mail, String pass) {
         String mEmail = mail;

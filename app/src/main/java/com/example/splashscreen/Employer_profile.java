@@ -1,17 +1,21 @@
 package com.example.splashscreen;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -36,6 +40,43 @@ public class Employer_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_profile);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.employer_Profile);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_calendar:
+                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_Profile:
+                        return true;
+
+                    case R.id.employer_home:
+                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         profileImage = findViewById(R.id.employer_profilepic);
         fullname = findViewById(R.id.Employer_profile_Name);
         email = findViewById(R.id.employer_profile_Email);
@@ -64,47 +105,23 @@ public class Employer_profile extends AppCompatActivity {
                 fullname.setText(documentSnapshot.getString("fname"));
                 email.setText(documentSnapshot.getString("email"));
                 phone.setText(documentSnapshot.getString("phone"));
-//                pname = (documentSnapshot.getString("fname"));
-//                pemail=(documentSnapshot.getString("email"));
-//                pphone=(documentSnapshot.getString("phone"));
-
             }
-
         });
-
-
-
-
     }
 
 
     /// Onclickbuttons for bottom navigationbar
     public void employer_profile_to_edit_profile(View v) {
         //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, employee_edit_profile.class);
+        Intent intent = new Intent(this, Employer_edit_profile.class);
         intent.putExtra("fullname",fullname.getText().toString());
         intent.putExtra("email",email.getText().toString());
         intent.putExtra("phone",phone.getText().toString());
         startActivity(intent); }
 
-    public void employer_profile_to_home(View v) {
-        //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_home.class);
-        startActivity(intent);
-    }
-    public void employer_profile_to_calendar(View v) {
-        //Toast.makeText(this, "Check in/out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_calender.class);
-        startActivity(intent);
-    }
     public void employer_profile_to_login(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),login_page.class));
-        finish();
-    }
-    public void employer_profile_to_addemployee(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+        startActivity(new Intent(getApplicationContext(),login_page.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         finish();
     }
 
