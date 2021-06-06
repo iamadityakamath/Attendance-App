@@ -1,41 +1,49 @@
 package com.example.splashscreen;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.auth.User;
 
-public class Admin_home extends AppCompatActivity {
+public class Admin_home extends AppCompatActivity implements View.OnClickListener {
 
+    private CardView aHomeCard, aAddUserCard, aCalendarCard, aProfileCard;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
+
+        aHomeCard = (CardView) findViewById(R.id.aHomeCard);
+        aAddUserCard = (CardView) findViewById(R.id.aAddUserCard);
+        aCalendarCard = (CardView) findViewById(R.id.aCalendarCard);
+        aProfileCard = (CardView) findViewById(R.id.aProfileCard);
+
+
+        aHomeCard.setOnClickListener(this);
+        aAddUserCard.setOnClickListener(this);
+        aCalendarCard.setOnClickListener(this);
+        aProfileCard.setOnClickListener(this);
+
     }
 
-    public void Admin_profile_to_login(View view){
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),login_page.class));
-        finish();
-    }
 
-    public void admin_to_adminaddemployee(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Admin_addEmployer.class);
-        startActivity(intent);
-        finish();
+    @Override
+    public void onClick(View v) {
+        Intent i;
+
+        switch (v.getId()){
+            case R.id.aHomeCard : i = new Intent(this, Admin_Search.class);startActivity(i); break;
+            case R.id.aAddUserCard: i = new Intent(this, Admin_addEmployer.class);startActivity(i); break;
+            case R.id.aCalendarCard: i = new Intent(this, Admin_Calendar.class);startActivity(i); break;
+            case R.id.aProfileCard: i = new Intent(this, Admin_Profile.class);startActivity(i); break;
+            default:break ;
+
+        }
+
     }
-//    public void employeraddemployee_to_employer_profile(View v) {
-//        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-//        Intent intent = new Intent(this, Employer_profile.class);
-//        startActivity(intent);
-//        finish();
-//    }
 }

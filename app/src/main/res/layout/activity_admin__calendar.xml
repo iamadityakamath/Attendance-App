@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".Admin_Calendar">
+
+
+    <TextView
+        android:id="@+id/aHolidaylist_txtx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Holiday List"
+        android:textColor="@android:color/background_dark"
+        android:textSize="28sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/acardView"
+        android:layout_width="326dp"
+        android:layout_height="401dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/blank_white_box"
+        android:hapticFeedbackEnabled="true"
+        app:cardCornerRadius="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aHolidaylist_txtx"
+        app:layout_constraintVertical_bias="0.087">
+
+
+        <CalendarView
+
+            android:id="@+id/aemployee_calendarView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:addStatesFromChildren="true"
+            android:animationCache="true"
+            android:background="#FFFFFF"
+            android:clickable="true"
+            android:clipChildren="true"
+            android:clipToPadding="true"
+            android:fitsSystemWindows="false"
+            android:focusable="true"
+            android:focusedMonthDateColor="#28ABCC"
+            android:hapticFeedbackEnabled="true"
+            android:selectedDateVerticalBar="@color/black"
+            android:selectedWeekBackgroundColor="#B2D13F"
+            android:showWeekNumber="true"
+            android:unfocusedMonthDateColor="#28ABCC"
+            android:weekNumberColor="#CD1717"
+            android:weekSeparatorLineColor="#28ABCC" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/aemployer_view_pdf"
+        android:layout_width="135dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/input_background_shape"
+        android:gravity="center"
+        android:onClick="admin_calendartoviewholidaypdf"
+        android:text="View PDF"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#730000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/navigation3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acardView"
+        app:layout_constraintVertical_bias="0.386" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation3"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bg"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@drawable/item_selecter"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_view_pdf"
+        app:menu="@menu/admin_nav" />
+</androidx.constraintlayout.widget.ConstraintLayout>

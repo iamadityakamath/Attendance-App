@@ -17,7 +17,11 @@
         android:roundIcon="@mipmap/ic_launchercircle"
         android:supportsRtl="true"
         android:theme="@style/Theme.Splashscreen">
-        <activity android:name=".Employer_edit_profile"></activity>
+        <activity android:name=".Admin_edit_profile"></activity>
+        <activity android:name=".Admin_Search" />
+        <activity android:name=".Admin_Profile" />
+        <activity android:name=".Admin_Calendar" />
+        <activity android:name=".Employer_edit_profile" />
         <activity android:name=".View_holiday_pdf" />
         <activity android:name=".EmployerSeeEmployeeDetails" />
         <activity android:name=".Employer_search" />
@@ -38,9 +42,9 @@
         <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
-
             </intent-filter>
         </activity>
 

@@ -105,7 +105,7 @@
         android:id="@+id/admin_add_regesterbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="8dp"
         android:shadowColor="#000000"
         android:text="Register"
         android:textColor="#008FFF"
@@ -114,7 +114,7 @@
         android:textColorLink="@color/black"
         app:backgroundTint="#000000"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/navigation3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:rippleColor="#FFFFFF"
@@ -128,81 +128,38 @@
         android:layout_height="48dp"
         android:layout_marginStart="188dp"
         android:layout_marginLeft="188dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="189dp"
         android:layout_marginRight="189dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:indeterminateTint="@color/black"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/admin_add_regesterbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar1"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        android:layout_width="411dp"
-        android:layout_height="65dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_email" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation3"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
         android:layout_gravity="bottom"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        app:backgroundTint="#000000"
+        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/bg"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@drawable/item_selecter"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="BottomAppBar" />
-
-    <ImageView
-        android:id="@+id/admin_home_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:hapticFeedbackEnabled="true"
-        android:onClick="admin_to_adminhome"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
-        app:layout_constraintVertical_bias="0.39"
-        app:srcCompat="@drawable/ic_baseline_home_24" />
-
-    <ImageView
-        android:id="@+id/admin_calendar_bitton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
-        app:layout_constraintStart_toEndOf="@+id/admin_add_user_button"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
-        app:layout_constraintVertical_bias="0.4"
-        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
-
-    <ImageView
-        android:id="@+id/admin_Profile_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/admin_calendar_bitton"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
-        app:layout_constraintVertical_bias="0.4"
-        app:srcCompat="@drawable/ic_baseline_person_24" />
-
-    <ImageView
-        android:id="@+id/admin_add_user_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginLeft="56dp"
-        app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar1"
-        app:layout_constraintStart_toEndOf="@+id/admin_home_button"
-        app:layout_constraintTop_toTopOf="@+id/bottomAppBar1"
-        app:layout_constraintVertical_bias="0.4"
-        app:srcCompat="@drawable/ic_baseline_person_add_24" />
+        app:layout_constraintTop_toBottomOf="@+id/employer_view_pdf"
+        app:menu="@menu/admin_nav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
