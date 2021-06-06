@@ -84,8 +84,10 @@ public class login_page extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(login_page.this, "Error ! \n"+ e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(login_page.this, "User not Found", Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.INVISIBLE);
+                        l_email.setText("");
+                        l_pass.setText("");
                     }
                 });
 

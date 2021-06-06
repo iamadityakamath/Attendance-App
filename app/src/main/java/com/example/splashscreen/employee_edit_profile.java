@@ -99,33 +99,12 @@ public class employee_edit_profile extends AppCompatActivity {
                     Toast.makeText(employee_edit_profile.this, "One or many fields are empty.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(!ephone.getText().toString().matches("\\d{10}")){
+                    Toast.makeText(employee_edit_profile.this, "Phone no. is invalid", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (fAuth.getCurrentUser() != null) {
                     userID = fAuth.getCurrentUser().getUid();
-
-//                    DocumentReference documentrefrence3 = fstore.collection("Employer").document(userID);
-//                    documentrefrence3.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                        @Override
-//                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                            if (documentSnapshot.getString("isEmployer") != null) {
-//                                Map<String, Object> edited1 = new HashMap<>();
-//                                edited1.put("fname", ename.getText().toString());
-//                                edited1.put("phone", ephone.getText().toString());
-//                                documentrefrence3.update(edited1).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                    @Override
-//                                    public void onSuccess(Void aVoid) {
-//                                        Toast.makeText(employee_edit_profile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-//                                    }
-//                                }).addOnFailureListener(new OnFailureListener() {
-//                                    @Override
-//                                    public void onFailure(@NonNull Exception e) {
-//                                        Toast.makeText(employee_edit_profile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                    }
-//                                });
-//                            }
-//
-//                        }
-//                    });
-
 
                     DocumentReference documentrefrence1 = fstore.collection("users").document(userID);
                     documentrefrence1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

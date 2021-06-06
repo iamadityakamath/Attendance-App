@@ -28,6 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Employer_addemployee extends AppCompatActivity {
     public static final String TAG = "TAG";
@@ -111,19 +113,21 @@ public class Employer_addemployee extends AppCompatActivity {
                 String fnmame = name.getText().toString();
                 String phone = phonenum.getText().toString();
 
+
                 ///if any field is empty
                 if((TextUtils.isEmpty(fnmame))){
-                    name.setError("password is required");
+                    name.setError("Name  is required");
                     return;
                 }
                 if (TextUtils.isEmpty(mail) || !Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
                     email.setError("Email is required");
                     return;
                 }
-                if((TextUtils.isEmpty(phone))){
-                    phonenum.setError("password is required");
+                if((TextUtils.isEmpty(phone)) || !phone.matches("\\d{10}")){
+                    phonenum.setError("Phone no. is incorrect");
                     return;
                 }
+
                 boolean x = isValid(pass);
                 if(x ==false){
                     passwordinp.setError("password should have 8 charachters incl 1 capital letter and 1 special character");
@@ -269,7 +273,7 @@ public class Employer_addemployee extends AppCompatActivity {
     private void senEmail(String fnmame, String mail, String pass) {
         String mEmail = mail;
         String mSubject = "Successfully Registered";
-        String mMessage = "Dear " + fnmame + ", " + "\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n"+"\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass;
+        String mMessage = "Dear " + fnmame + ", " + "\n"+"\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n"+"\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass+ "\n"+"\n"+"\n"+"\n" +"To reset the password, go to profile-> Edit Profile -> Reset Password";
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
 

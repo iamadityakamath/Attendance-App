@@ -66,6 +66,7 @@ public class employee_checkinout extends AppCompatActivity {
     int offstarttime,offstoptime,difference;
 
     static int vcin=1,vcout=0;
+    static  int view_buttons=0;
 
     Geocoder geocoder;
     List<Address> addresses;
@@ -88,6 +89,7 @@ public class employee_checkinout extends AppCompatActivity {
         setContentView(R.layout.activity_employee_checkinout);
 
 
+
         latitudeTextView = findViewById(R.id.latitude_pos);
         longitTextView = findViewById(R.id.longitude_pos);
         current_date = (TextView) findViewById(R.id.Date_op);
@@ -96,7 +98,8 @@ public class employee_checkinout extends AppCompatActivity {
         map = findViewById(R.id.map);
         checkin = findViewById(R.id.Checkin_button);
         checkout = findViewById(R.id.Checkout_button);
-
+        checkin.setVisibility(View.INVISIBLE);
+        checkout.setVisibility(View.INVISIBLE);
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
@@ -148,21 +151,36 @@ public class employee_checkinout extends AppCompatActivity {
         String[] x = CurrentTime.toString().split(":");
         int currtime = (Integer.parseInt(x[0])*3600  + Integer.parseInt(x[1])*60  + Integer.parseInt(x[2]) );
 
-//        if(currtime>offstoptime || currtime>offstarttime){
-//            checkin.setVisibility(View.INVISIBLE);
-//        }
+//
 
+        db1 = fstore.collection("users").document(userID).collection("Daily").document(current_date.getText().toString());
+        db1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.getString("checkin_time_1") == null) {
+                    checkin.setVisibility(View.VISIBLE);
+                    checkout.setVisibility(View.INVISIBLE);
+                }
+                if (documentSnapshot.getString("checkin_time_1") != null) {
+                    checkin.setVisibility(View.INVISIBLE);
+                    checkout.setVisibility(View.VISIBLE);
+                }
+                if ((documentSnapshot.getString("checkin_time_1") != null) && documentSnapshot.getString("checkout_time_1")!=null){
+                    if(view_buttons==0){
+                        checkin.setVisibility(View.VISIBLE);
+                        checkout.setVisibility(View.INVISIBLE);
+                    }
+                    if (view_buttons ==1){
+                        checkin.setVisibility(View.INVISIBLE);
+                        checkout.setVisibility(View.VISIBLE);
+                    }
+                }
+                if(currtime>offstoptime || currtime>offstarttime){
+                    checkin.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
-        if(vcout == 1){
-            checkin.setVisibility(View.INVISIBLE);
-            checkout.setVisibility(View.VISIBLE);
-            vcout = 0;
-        }
-        if(vcin == 1){
-            checkin.setVisibility(View.VISIBLE);
-            checkout.setVisibility(View.INVISIBLE);
-            vcin=0;
-        }
 
 
         //Check in
@@ -197,7 +215,7 @@ public class employee_checkinout extends AppCompatActivity {
                             userinfo.put("minutes", 0);
                             db1.set(userinfo);
                         }
-                        if (documentSnapshot.getString("checkin_time_1") != null && currtime<offstoptime) {
+                        if (documentSnapshot.getString("checkin_time_1") != null ) {
                             Map<String, Object> userinfo = new HashMap<>();
                             userinfo.put("checkin_time_2", current_time.getText().toString());
 //                            userinfo.put("checkin_location_2", geo);
@@ -206,6 +224,7 @@ public class employee_checkinout extends AppCompatActivity {
                         }
                     }
                 });
+                view_buttons=1;
                 Intent intent = new Intent (employee_checkinout.this, employee_home.class);
                 startActivity(intent);
             }
@@ -263,6 +282,7 @@ public class employee_checkinout extends AppCompatActivity {
                         }
                     }
                 });
+                view_buttons=0;
                 checkout.setVisibility(View.INVISIBLE);
                 Intent intent = new Intent (employee_checkinout.this, employee_home.class);
                 startActivity(intent);

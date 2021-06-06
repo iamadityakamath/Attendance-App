@@ -90,6 +90,10 @@ public class Employer_edit_profile extends AppCompatActivity {
                     Toast.makeText(Employer_edit_profile.this, "One or many fields are empty.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(!ephone.getText().toString().matches("\\d{10}")){
+                    Toast.makeText(Employer_edit_profile.this, "Phone no. is invalid", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (fAuth.getCurrentUser() != null) {
                     userID = fAuth.getCurrentUser().getUid();
 

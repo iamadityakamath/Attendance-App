@@ -219,10 +219,19 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getId()==R.id.employer_see_emplyee_year_spinner){
+        if(parent.getId()==R.id.employer_see_emplyee_year_spinner) {
             int year_pose = parent.getSelectedItemPosition();
-            String[] x = {"2021" ,"2022", "2023", "2024","2025","2026" } ;
+            String[] x = {"2021", "2022", "2023", "2024", "2025", "2026"};
             selectedYear = x[year_pose];
+            if (selectedYear != "2021") {
+                employer_see_emplyee_month_spinner.setSelection(0);
+                selectedMonthPos = df.format(0);
+            }
+            if(selectedYear=="2021"){
+                employer_see_emplyee_month_spinner.setSelection(currentmonth);
+                selectedMonthPos = df.format(currentmonth+1);
+            }
+
         }
         if (parent.getId()==R.id.employer_see_emplyee_month_spinner) {
             int c = (int) parent.getSelectedItemPosition()+1;
