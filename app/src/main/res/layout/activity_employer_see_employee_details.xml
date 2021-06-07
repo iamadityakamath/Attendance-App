@@ -327,7 +327,6 @@
                 android:textColor="#079CFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Yearly_total"
                 app:layout_constraintVertical_bias="0.21" />
 
             <TextView
@@ -342,7 +341,7 @@
                 android:textColor="#079CFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/yearly_total_txt"
-                app:layout_constraintTop_toBottomOf="@+id/Yearly_leave"
+
                 app:layout_constraintVertical_bias="0.238" />
 
             <TextView
@@ -356,7 +355,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.618"
                 app:layout_constraintStart_toEndOf="@+id/yearly_leave_txt"
-                app:layout_constraintTop_toBottomOf="@+id/yearly_present"
+
                 app:layout_constraintVertical_bias="0.285" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -433,6 +432,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/employer_view_pdf"
         app:menu="@menu/employer_nav" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="delete_user"
+        app:layout_constraintBottom_toTopOf="@+id/employer_see_emplyee_download_Attendance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/employer_see_employee_img"
+        app:layout_constraintVertical_bias="0.428"
+        app:srcCompat="@drawable/ic_baseline_delete_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -273,7 +273,7 @@ public class Employer_addemployee extends AppCompatActivity {
     private void senEmail(String fnmame, String mail, String pass) {
         String mEmail = mail;
         String mSubject = "Successfully Registered";
-        String mMessage = "Dear " + fnmame + ", " + "\n"+"\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n"+"\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass+ "\n"+"\n"+"\n"+"\n" +"To reset the password, go to profile-> Edit Profile -> Reset Password";
+        String mMessage = "Dear " + fnmame + ", " + "\n"+"\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n"+"\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass+ "\n"+"\n"+"\n"+"\n" +"To reset the password, go to profile-> Edit Profile -> Reset Password"+"\n"+"\n"+"\n"+"\n"+"Click on the below link to download the app"+"\n\n\n\n"+"https://drive.google.com/drive/folders/1tXStdKMSAqqAHrppR8YEVZBQpZiDtd3y?usp=sharing";
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
 

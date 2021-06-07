@@ -1,6 +1,7 @@
 package com.example.splashscreen;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,15 +18,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,19 +42,22 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class EmployerSeeEmployeeDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class EmployerSeeEmployeeDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ImageView employer_see_employee_img;
-    TextView detailname,detailemail,detailphone;
-    TextView employer_see_emplyee_yearly_present,employer_see_emplyee_Yearly_total,employer_see_emplyee_Yearly_leave;
-    TextView employer_see_emplyee_monthly_total,employer_see_emplyee_monthly_leaves,employer_see_emplyee_monthly_present;
-    Spinner employer_see_emplyee_month_spinner,employer_see_emplyee_year_spinner;
-    int total_full_days = 0,total_month_full_days=0,total_month_presentdays=0;
-    String userID;
+    TextView detailname, detailemail, detailphone;
+    TextView employer_see_emplyee_yearly_present, employer_see_emplyee_Yearly_total, employer_see_emplyee_Yearly_leave;
+    TextView employer_see_emplyee_monthly_total, employer_see_emplyee_monthly_leaves, employer_see_emplyee_monthly_present;
+    Spinner employer_see_emplyee_month_spinner, employer_see_emplyee_year_spinner;
+    int total_full_days = 0, total_month_full_days = 0, total_month_presentdays = 0;
+    String userID,Employer_userid;
+    String Employer_email,Employer_pass;
     String selectedMonthPos;
     String selectedYear;
 
@@ -61,7 +72,7 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
     public ArrayList<String> list_year = new ArrayList<String>();
 
     LocalDate currentdate = LocalDate.now();
-    int currentmonth = currentdate.getMonthValue()-1;
+    int currentmonth = currentdate.getMonthValue() - 1;
     DecimalFormat df = new DecimalFormat("00");
 
     @Override
@@ -69,37 +80,39 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_see_employee_details);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
 
                     case R.id.employer_Dashboad:
-                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), Employer_home.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.employer_add_user:
-                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), Employer_addemployee.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.employer_calendar:
-                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), Employer_calender.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.employer_Profile:
-                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), Employer_profile.class));
+                        overridePendingTransition(0, 0);
                         return true;
 
                     case R.id.employer_home:
-                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), Employer_search.class));
+                        overridePendingTransition(0, 0);
                 }
                 return false;
             }
@@ -125,13 +138,24 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
 
+        Employer_userid = fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = fstore.collection("Employer").document(Employer_userid);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                Employer_email = documentSnapshot.getString("email");
+                Employer_pass = documentSnapshot.getString("pass");
+                Log.d("Delete_from_data", " "+Employer_email);
+                Log.d("Delete_from_data", " "+Employer_pass);
+            }
+        });
 
 
         final Object obj = getIntent().getSerializableExtra("details");
-        if(obj instanceof ExampleItem){
+        if (obj instanceof ExampleItem) {
             Items = (ExampleItem) obj;
         }
-        if(Items != null){
+        if (Items != null) {
             detailname.setText(Items.getFname());
             detailemail.setText(String.valueOf(Items.getEmail()));
             detailphone.setText(Items.getPhone());
@@ -147,10 +171,10 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
 
     private void SetProfilePic() {
         StorageReference profileRef;
-        if ( storagerefrence.child("users/"+Items.getUserID()+"/Profile.jpg")==null){
+        if (storagerefrence.child("users/" + Items.getUserID() + "/Profile.jpg") == null) {
             return;
         }
-        storagerefrence.child("users/"+Items.getUserID()+"/Profile.jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        storagerefrence.child("users/" + Items.getUserID() + "/Profile.jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
                 Picasso.get().load(uri).transform(new CircleTransform()).into(employer_see_employee_img);
@@ -158,7 +182,7 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("image_doesnot_exsist", ""+e);
+                Log.d("image_doesnot_exsist", "" + e);
             }
         });
     }
@@ -176,13 +200,13 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                         list_dates.add(p.getCheckin_date_());
                     }
                     ///Yearly calculation
-                    for(int i = 0; i < list_hours.size(); i++) {
+                    for (int i = 0; i < list_hours.size(); i++) {
                         if (list_hours.get(i) > 200) {
                             total_full_days = total_full_days + 1;
                         }
                     }
-                    for(int i = 0; i < list_dates.size(); i++) {
-                        String [] dateParts = list_dates.get(i).split("-");
+                    for (int i = 0; i < list_dates.size(); i++) {
+                        String[] dateParts = list_dates.get(i).split("-");
                         String month = dateParts[1];
                         String year = dateParts[2];
                         list_month.add(month);
@@ -195,31 +219,31 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                     String yearly_totaldays = Integer.toString(list_hours.size());
                     employer_see_emplyee_Yearly_total.setText(yearly_totaldays);
 
-                    String yearly_absent = Integer.toString(list_hours.size()-total_full_days);
+                    String yearly_absent = Integer.toString(list_hours.size() - total_full_days);
                     employer_see_emplyee_Yearly_leave.setText(yearly_absent);
                 }
 
             }
         });
     }
+
     private void PopulateSpinnerYear() {
-        ArrayAdapter<String> yearadapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.year_array));
+        ArrayAdapter<String> yearadapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.year_array));
         yearadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         employer_see_emplyee_year_spinner.setAdapter(yearadapter);
     }
+
     private void PopulateSpinnerMonth() {
-        ArrayAdapter<CharSequence>  monthadapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> monthadapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item);
         monthadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         employer_see_emplyee_month_spinner.setAdapter(monthadapter);
         employer_see_emplyee_month_spinner.setSelection(currentmonth);
     }
 
 
-
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(parent.getId()==R.id.employer_see_emplyee_year_spinner) {
+        if (parent.getId() == R.id.employer_see_emplyee_year_spinner) {
             int year_pose = parent.getSelectedItemPosition();
             String[] x = {"2021", "2022", "2023", "2024", "2025", "2026"};
             selectedYear = x[year_pose];
@@ -227,17 +251,17 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                 employer_see_emplyee_month_spinner.setSelection(0);
                 selectedMonthPos = df.format(0);
             }
-            if(selectedYear=="2021"){
+            if (selectedYear == "2021") {
                 employer_see_emplyee_month_spinner.setSelection(currentmonth);
-                selectedMonthPos = df.format(currentmonth+1);
+                selectedMonthPos = df.format(currentmonth + 1);
             }
 
         }
-        if (parent.getId()==R.id.employer_see_emplyee_month_spinner) {
-            int c = (int) parent.getSelectedItemPosition()+1;
-            selectedMonthPos  = df.format(c); // 0009
-            total_month_presentdays=0;
-            total_month_full_days=0;
+        if (parent.getId() == R.id.employer_see_emplyee_month_spinner) {
+            int c = (int) parent.getSelectedItemPosition() + 1;
+            selectedMonthPos = df.format(c); // 0009
+            total_month_presentdays = 0;
+            total_month_full_days = 0;
 
             CollectionReference db1 = fstore.collection("users").document(userID).collection("Daily");
             db1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -265,7 +289,7 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                     String monthly_totaldays = Integer.toString(total_month_full_days);
                     employer_see_emplyee_monthly_total.setText(monthly_totaldays);
 
-                    String monthly_absent = Integer.toString(total_month_full_days-total_month_presentdays);
+                    String monthly_absent = Integer.toString(total_month_full_days - total_month_presentdays);
                     employer_see_emplyee_monthly_leaves.setText(monthly_absent);
 
                 }
@@ -280,8 +304,7 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
             int year_pose = parent.getSelectedItemPosition();
             String[] x = {"2021", "2022", "2023", "2024", "2025", "2026"};
             selectedYear = x[year_pose];
-        }
-        else if (parent.getId() == R.id.employer_see_emplyee_month_spinner) {
+        } else if (parent.getId() == R.id.employer_see_emplyee_month_spinner) {
             int c = (int) parent.getSelectedItemPosition() + 1;
             selectedMonthPos = df.format(c); // 0009
         }
@@ -291,5 +314,68 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         Intent intent = new Intent(this, employee_seeAttendance.class);
         intent.putExtra("userID", Items.getUserID());
         startActivity(intent);
+    }
+
+    public void delete_user(View v) {
+        String x = Items.getUserID();
+        Log.d("Delete_from_data", " "+x);
+
+        DocumentReference documentrefrence4 = fstore.collection("Employer").document(Employer_userid).collection("Employees").document(x);
+        documentrefrence4.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                documentrefrence4.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Delete_from_data", "sucessfully deleted from employer database ");
+                        DocumentReference documentrefrence2 = fstore.collection("users").document(x);
+                        documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                if (documentSnapshot.getString("isUser") != null) {
+                                    String e_email = documentSnapshot.getString("email");
+                                    String e_pass = documentSnapshot.getString("password");
+                                    fAuth.signInWithEmailAndPassword(e_email, e_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                        @Override
+                                        public void onSuccess (AuthResult authResult){
+                                            FirebaseUser usere = FirebaseAuth.getInstance().getCurrentUser();
+                                            usere.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Log.d("Delete_from_data", "sucessfully deleted from Authentication database ");
+                                                        documentrefrence2.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void aVoid) {
+                                                                Log.d("Delete_from_data", "sucessfully deleted from Employee database ");
+                                                                loginagain();
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                    }
+                });
+
+            }
+        });
+    }
+
+    public void loginagain(){
+        fAuth.signInWithEmailAndPassword(Employer_email, Employer_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess (AuthResult authResult){
+                Employer_userid = fAuth.getCurrentUser().getUid();
+                Log.d("Delete_from_data", "logged in using ");
+                Toast.makeText(EmployerSeeEmployeeDetails.this, "Account Deleted Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), Employer_home.class));
+            }
+        });
     }
 }

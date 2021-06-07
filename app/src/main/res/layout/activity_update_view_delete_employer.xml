@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_drawable"
+    tools:context=".UpdateViewDelete_Employer">
+
+
+    <LinearLayout
+        android:id="@+id/EmployerDetailLinearLayout"
+        android:layout_width="408dp"
+        android:layout_height="623dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="44dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/adminbottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:gravity="center_horizontal"
+            android:text="Details"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+
+        <EditText
+            android:id="@+id/Employer_Detail_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/input_background_shape"
+            android:gravity="center"
+            android:hint="Name"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/Employer_Detail_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/input_background_shape"
+            android:gravity="center"
+            android:hint="Email"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+
+        <EditText
+            android:id="@+id/Employer_Detail_Pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/input_background_shape"
+            android:gravity="center_horizontal"
+            android:hint="Password"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/Employer_Detail_Phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/input_background_shape"
+            android:digits="0123456789."
+            android:gravity="center_horizontal"
+            android:hint="Phone"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF" />
+
+        <EditText
+            android:id="@+id/Employer_Detail_UserID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/input_background_shape"
+            android:digits="0123456789"
+            android:gravity="center_horizontal"
+            android:hint="UserID"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHighlight="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Employer_Detail_Update_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_background_shape"
+            android:soundEffectsEnabled="true"
+            android:text="Update"
+            android:textAllCaps="true"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:backgroundTint="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Employer_Detail_Delete_Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_background_shape"
+            android:soundEffectsEnabled="true"
+            android:text="Delete"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:backgroundTint="#FFFFFF" />
+
+
+        <Button
+            android:id="@+id/Employer_Detail_Employee_Button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/input_background_shape"
+            android:text="Employees Under Them"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textColorHighlight="#000000"
+            android:textStyle="bold"
+            app:backgroundTint="#FFFFFF" />
+
+    </LinearLayout>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/adminbottomAppBar"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="411dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        app:backgroundTint="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.995" />
+
+    <ImageView
+        android:id="@+id/Employer_Detail_to_home_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:hapticFeedbackEnabled="true"
+        app:layout_constraintBottom_toBottomOf="@+id/adminbottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="Employer_Detail_to_admin_home_button"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="@+id/adminbottomAppBar"
+        app:layout_constraintTop_toTopOf="@+id/adminbottomAppBar"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageView
+        android:id="@+id/Employer_Detail_to_admin_calender"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:onClick="Employer_Detail_to_admin_calender"
+        app:layout_constraintBottom_toBottomOf="@+id/adminbottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.646"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/adminbottomAppBar"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+    <ImageView
+        android:id="@+id/Employer_Detail_to_admin_Profile_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+
+        android:onClick="Employer_Detail_to_admin_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/adminbottomAppBar"
+        app:layout_constraintEnd_toEndOf="@+id/adminbottomAppBar"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/adminbottomAppBar"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
+    <ImageView
+        android:id="@+id/admin_add_employer_button"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:onClick="Employer_Detail_to_admin_add_employer"
+        app:layout_constraintBottom_toBottomOf="@+id/adminbottomAppBar"
+        app:layout_constraintEnd_toEndOf="@+id/adminbottomAppBar"
+        app:layout_constraintHorizontal_bias="0.353"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/adminbottomAppBar"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/ic_baseline_person_add_24" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

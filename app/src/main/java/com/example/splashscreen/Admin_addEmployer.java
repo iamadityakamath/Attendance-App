@@ -123,8 +123,8 @@ public class Admin_addEmployer extends AppCompatActivity {
                     return;
                 }
 
-                if((TextUtils.isEmpty(phone))){
-                    phonenum.setError("password is required");
+                if((TextUtils.isEmpty(phone)) || !phone.matches("\\d{10}")){
+                    phonenum.setError("Phone no. is incorrect");
                     return;
                 }
                 boolean x = isValid(pass);
@@ -271,7 +271,7 @@ public class Admin_addEmployer extends AppCompatActivity {
     private void senEmail(String fnmame, String mail, String pass) {
         String mEmail = mail;
         String mSubject = "Successfully Registered";
-        String mMessage = "Dear " + fnmame + ", " + "\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass+"\n"+"\n"+"Download the app to Login";
+        String mMessage = "Dear " + fnmame + ", " + "\n" +"Welcome to IBM Attendance App"+"\n"+ "Your account has been created with credentials: " + "\n"+"\n" +"Email: "+ mEmail + "\n" +"password: "+ pass+"\n"+"\n"+"\n"+"\n" +"To reset the password, go to profile-> Edit Profile -> Reset Password"+"\n"+"\n"+"\n"+"\n"+"Click on the below link to download the app"+"\n\n\n\n"+"https://drive.google.com/drive/folders/1tXStdKMSAqqAHrppR8YEVZBQpZiDtd3y?usp=sharing";;
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
         javaMailAPI.execute();
     }
