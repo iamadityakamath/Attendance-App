@@ -6,11 +6,21 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class Admin_edit_office_time extends AppCompatActivity {
     TextView Office_start,Office_stop,max_hours;
     Button Save_admin_offtime;
     CharSequence gethours;
     int minutes;
+
+    String userID;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fstore;
 
 
     @Override
@@ -24,6 +34,13 @@ public class Admin_edit_office_time extends AppCompatActivity {
 
 //        Office_start =preg_match("/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/", $foo);
         gethours = max_hours.getText().toString();
+        DocumentReference df = fstore.collection("Admin").document(userID);
+        df.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+
+            }
+        });
     }
 
 }

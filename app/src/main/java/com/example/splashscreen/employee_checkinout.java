@@ -175,9 +175,9 @@ public class employee_checkinout extends AppCompatActivity {
                         checkout.setVisibility(View.VISIBLE);
                     }
                 }
-                if(currtime>offstoptime || currtime<offstarttime){
-                    checkin.setVisibility(View.INVISIBLE);
-                }
+//                if(currtime>offstoptime || currtime<offstarttime){
+//                    checkin.setVisibility(View.INVISIBLE);
+//                }
             }
         });
 
