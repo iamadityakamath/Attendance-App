@@ -46,4 +46,8 @@ public class Admin_home extends AppCompatActivity implements View.OnClickListene
         }
 
     }
+    public void chenge_off_time(View v){
+        Intent intent = new Intent(this, Admin_edit_office_time.class);
+        startActivity(intent);
+    }
 }

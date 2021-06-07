@@ -17,10 +17,10 @@
         android:roundIcon="@mipmap/ic_launchercircle"
         android:supportsRtl="true"
         android:theme="@style/Theme.Splashscreen">
-        <activity android:name=".Admin_edit_profile"></activity>
-        <activity android:name=".AdminSeeEmployee"></activity>
+        <activity android:name=".Admin_edit_office_time"></activity>
+        <activity android:name=".Admin_edit_profile" />
+        <activity android:name=".AdminSeeEmployee" />
         <activity android:name=".UpdateViewDelete_Employer" />
-
         <activity android:name=".Admin_Search" />
         <activity android:name=".Admin_Profile" />
         <activity android:name=".Admin_Calendar" />

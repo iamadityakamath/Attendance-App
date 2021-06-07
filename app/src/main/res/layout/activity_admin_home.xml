@@ -28,7 +28,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:layout_marginRight="100dp" />
 
@@ -204,6 +204,25 @@
         </androidx.cardview.widget.CardView>
 
     </GridLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Dashboard_gridlayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="0dp"
+        android:onClick="chenge_off_time"
+        android:text="change Office Timings"
+        app:backgroundTint="#000000"
+        app:cornerRadius="50dp" />
 
 
 </RelativeLayout>
