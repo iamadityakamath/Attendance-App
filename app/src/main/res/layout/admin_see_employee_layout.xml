@@ -8,44 +8,39 @@
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
     android:layout_marginRight="0dp"
-    android:padding="8dp"
-    android:paddingTop="10dp"
+
+    android:paddingLeft="5dp"
+    android:paddingBottom="10dp"
     app:cardCornerRadius="100dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_margin="4dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
-        android:orientation="horizontal"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:orientation="horizontal">
 
 
         <TextView
             android:id="@+id/AdminSeeEmployer_EmployeeName"
-            android:layout_width="282dp"
-            android:layout_height="52dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+            android:layout_width="292dp"
+            android:layout_height="46dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="87dp"
-            android:layout_marginLeft="87dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_marginBottom="7dp"
+
+            android:layout_toEndOf="@+id/AdminSeeEmployer_EmployeePic"
+            android:layout_toRightOf="@+id/AdminSeeEmployer_EmployeePic"
             android:background="@android:color/white"
             android:gravity="center"
+            android:paddingRight="30dp"
             android:text="Name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498" />
+            app:layout_constraintHorizontal_bias="0.498"   />
 
         <ImageView
             android:id="@+id/AdminSeeEmployer_EmployeePic"
@@ -53,8 +48,6 @@
             android:layout_height="match_parent"
             android:padding="2dp"
             app:srcCompat="@drawable/ic_employee_profile_home_img" />
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
