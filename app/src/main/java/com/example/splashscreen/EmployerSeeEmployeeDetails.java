@@ -145,8 +145,8 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         fstore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
-
         Employer_userid = fAuth.getCurrentUser().getUid();
+
         DocumentReference documentReference = fstore.collection("Employer").document(Employer_userid);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -163,6 +163,11 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 adminmaxminuts = documentSnapshot.getDouble("maxMinutes");
+                SetProfilePic();
+                SetyearlyAttendance();
+                PopulateSpinnerMonth();
+                PopulateSpinnerYear();
+                PopulateSpinnerYeartotal();
             }
         });
 
@@ -190,11 +195,7 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         });
 
 
-        SetProfilePic();
-        SetyearlyAttendance();
-        PopulateSpinnerMonth();
-        PopulateSpinnerYear();
-        PopulateSpinnerYeartotal();
+
         employer_see_emplyee_month_spinner.setOnItemSelectedListener(this);
         employer_see_emplyee_year_spinner.setOnItemSelectedListener(this);
         employer_see_emplyee_total_year_spinner.setOnItemSelectedListener(this);
@@ -206,9 +207,6 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                 AlertDialog.Builder deleteuser =new AlertDialog.Builder(v.getContext());
                 deleteuser.setTitle("Delete User");
                 deleteuser.setMessage("Are you sure you want to delete the user");
-
-
-
                 deleteuser.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -388,14 +386,11 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
             db1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-
                     for (int i = 0; i < list_dates.size(); i++) {
                         if (Objects.equals(list_month.get(i), selectedMonthPos) && Objects.equals(list_year.get(i), selectedYear)) {
                             total_month_full_days = total_month_full_days + 1;
-                            if (list_hours.get(i) > 0) {
+                            if (list_hours.get(i) > adminmaxminuts) {
                                 total_month_presentdays = total_month_presentdays + 1;
-
                             }
                         } else {
                             employer_see_emplyee_monthly_present.setText("0");
@@ -403,7 +398,6 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
                             employer_see_emplyee_monthly_leaves.setText("0");
                         }
                     }
-
 
                     String monthly_presentdays = Integer.toString(total_month_presentdays);
                     employer_see_emplyee_monthly_present.setText(monthly_presentdays);
@@ -438,99 +432,6 @@ public class EmployerSeeEmployeeDetails extends AppCompatActivity implements Ada
         startActivity(intent);
     }
 
-    public void delete_user(View v) {
-//        String x = Items.getUserID();
-//        Log.d("Delete_from_data", " "+x);
-//
-//        AlertDialog.Builder deleteuser =new AlertDialog.Builder(v.getContext());
-//        deleteuser.setTitle("Delete User");
-//        deleteuser.setMessage("Are you sure you want to delete the user");
-//        deleteuser.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                DocumentReference documentrefrence2 = fstore.collection("users").document(x);
-//                documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                    @Override
-//                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                        if (documentSnapshot.getString("isUser") != null) {
-//                            String e_email = documentSnapshot.getString("email");
-//                            String e_pass = documentSnapshot.getString("password");
-//                            fAuth.signInWithEmailAndPassword(e_email, e_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                                @Override
-//                                public void onSuccess(AuthResult authResult) {
-//                                    FirebaseUser usere = FirebaseAuth.getInstance().getCurrentUser();
-//                                    usere.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                        @Override
-//                                        public void onComplete(@NonNull Task<Void> task) {
-//                                            if (task.isSuccessful()) {
-//                                                loginagain();
-//                                            }
-//                                        }
-//
-//                                    });
-//                                }
-//                            });
-//                        }
-//                    }
-//                });
-//            }
-//        });
-//
-//        deleteuser.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //close the dialouge
-//
-//            }
-//        });
-//
-//
-//        DocumentReference documentrefrence4 = fstore.collection("Employer").document(Employer_userid).collection("Employees").document(x);
-//        documentrefrence4.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                documentrefrence4.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Log.d("Delete_from_data", "sucessfully deleted from employer database ");
-//                        DocumentReference documentrefrence2 = fstore.collection("users").document(x);
-//                        documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//                            @Override
-//                            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                                if (documentSnapshot.getString("isUser") != null) {
-//                                    String e_email = documentSnapshot.getString("email");
-//                                    String e_pass = documentSnapshot.getString("password");
-//                                    fAuth.signInWithEmailAndPassword(e_email, e_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                                        @Override
-//                                        public void onSuccess (AuthResult authResult){
-//                                            FirebaseUser usere = FirebaseAuth.getInstance().getCurrentUser();
-//                                            usere.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                                @Override
-//                                                public void onComplete(@NonNull Task<Void> task) {
-//                                                    if (task.isSuccessful()) {
-//                                                        Log.d("Delete_from_data", "sucessfully deleted from Authentication database ");
-//                                                        documentrefrence2.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-//                                                            @Override
-//                                                            public void onSuccess(Void aVoid) {
-//                                                                Log.d("Delete_from_data", "sucessfully deleted from Employee database ");
-//                                                                loginagain();
-//                                                            }
-//                                                        });
-//                                                    }
-//                                                }
-//                                            });
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                        });
-//
-//                    }
-//                });
-//
-//            }
-//        });
-    }
 
     public void loginagain(){
         fAuth.signInWithEmailAndPassword(Employer_email, Employer_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
