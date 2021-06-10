@@ -13,6 +13,7 @@
         android:layout_height="128dp"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +26,6 @@
         android:layout_width="180dp"
         android:layout_height="30dp"
         android:layout_margin="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
         android:background="@drawable/input_background_shape"
@@ -43,8 +41,6 @@
         android:layout_width="180dp"
         android:layout_height="30dp"
         android:layout_margin="10dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
@@ -358,27 +354,21 @@
 
                 app:layout_constraintVertical_bias="0.285" />
 
+            <Spinner
+                android:id="@+id/employer_see_emplyee_total_year_spinner"
+                android:layout_width="90dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="left"
+                android:padding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView><![CDATA[
 
-
-    <TextView
-        android:id="@+id/employeeEmail"
-        android:layout_width="180dp"
-        android:layout_height="30dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="8dp"
-        android:autoText="false"
-        android:background="@drawable/input_background_shape"
-        android:gravity="center"
-        android:hint="email"
-        android:inputType="text"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFF3F3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toEndOf="@+id/employer_see_employee_img"
-        app:layout_constraintTop_toBottomOf="@+id/employeeContact" />
 
     TextView
         android:id="@+id/textViewwhite_back"
@@ -390,6 +380,41 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    ]]>
+
+    <TextView
+        android:id="@+id/employeeEmail"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_margin="20dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="16dp"
+        android:autoText="true"
+        android:background="@drawable/input_background_shape"
+        android:gravity="center"
+        android:hint="email"
+        android:inputType="text"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFF3F3"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@+id/employer_see_emplyee_download_Attendance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.566"
+        app:layout_constraintStart_toEndOf="@+id/employer_see_employee_img" />
 
     <Button
         android:id="@+id/employer_see_emplyee_download_Attendance"
@@ -434,12 +459,11 @@
         app:menu="@menu/employer_nav" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/deleteemploye"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:onClick="delete_user"
         app:layout_constraintBottom_toTopOf="@+id/employer_see_emplyee_download_Attendance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
@@ -447,6 +471,25 @@
         app:layout_constraintTop_toBottomOf="@+id/employer_see_employee_img"
         app:layout_constraintVertical_bias="0.428"
         app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+    <TextView
+        android:id="@+id/dateofbirth"
+        android:layout_width="180dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/input_background_shape"
+        android:gravity="center"
+        android:text="doj"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/employer_see_employee_img"
+        app:layout_constraintTop_toBottomOf="@+id/employeeContact" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

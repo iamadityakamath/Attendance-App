@@ -32,8 +32,8 @@ import java.util.Map;
 
 
 public class Admin_addEmployer extends AppCompatActivity {
-    Button button;
-    EditText name, email, phonenum, passwordinp;
+    Button admin_add_regesterbutton;
+    private EditText name, email, phonenum, passwordinp;
     String currentemail,currentpass;
     ProgressBar progressbar;
     private FirebaseAuth fAuth1;
@@ -84,7 +84,7 @@ public class Admin_addEmployer extends AppCompatActivity {
         });
 
 
-        button = findViewById(R.id.admin_add_regesterbutton);
+        admin_add_regesterbutton = findViewById(R.id.admin_add_regesterbutton);
         name = findViewById(R.id.admin_add_name);
         email = findViewById(R.id.admin_add_email);
         phonenum = findViewById(R.id.admin_add_phone);
@@ -101,13 +101,15 @@ public class Admin_addEmployer extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 currentemail = documentSnapshot.getString("email");
                 currentpass = documentSnapshot.getString("admin_pass");
+                Log.d("current", ""+currentemail);
+                Log.d("current", ""+currentpass);
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
+        admin_add_regesterbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail = email.getText().toString().trim();
+                String newmail = email.getText().toString().trim();
                 String pass = passwordinp.getText().toString().trim();
                 String fnmame = name.getText().toString();
                 String phone = phonenum.getText().toString();
@@ -118,7 +120,7 @@ public class Admin_addEmployer extends AppCompatActivity {
                     return;
                 }
 
-                if (TextUtils.isEmpty(mail) || !Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+                if (TextUtils.isEmpty(newmail) || !Patterns.EMAIL_ADDRESS.matcher(newmail).matches()) {
                     email.setError("Email is required");
                     return;
                 }
@@ -137,24 +139,24 @@ public class Admin_addEmployer extends AppCompatActivity {
 
                 progressbar.setVisibility(View.VISIBLE);
                 //Regester user in firebase
-                fAuth1.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth1.createUserWithEmailAndPassword(newmail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
                             userID1 = fAuth1.getCurrentUser().getUid();
-                            DocumentReference documentrefrence = fstore.collection("Employer").document(userID1);
+                            DocumentReference documentrefrence3 = fstore.collection("Employer").document(userID1);
                             Map<String,Object> userinfo = new HashMap<>();
                             userinfo.put("fname", fnmame);
-                            userinfo.put("email",mail);
+                            userinfo.put("email",newmail);
                             userinfo.put("phone",phone);
                             userinfo.put("isEmployer","1");
                             userinfo.put("pass", pass);
                             userinfo.put("UserID",userID1);
-                            documentrefrence.set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            documentrefrence3.set(userinfo).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Admin_addEmployer.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                    senEmail(fnmame,mail,pass);
+                                    //senEmail(fnmame,mail,pass);
                                 }
                             });
 

@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -43,13 +44,14 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
     TextView employee_home_yearly_total,employee_home_yearly_present,employee_home_yearly_leaves;
     TextView employee_home_monthly_total,employee_home_monthly_leave,employee_home_monthly_present;
     int total_full_days = 0,total_month_full_days=0,total_month_presentdays=0;
-
+    int totaldays = 0;
     String userID;
     String selectedMonthPos;
-    String selectedYear;
+    String selectedYear,selectedYeartotal;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     StorageReference storagerefrence;
+    Double adminmaxminuts;
 
     public ArrayList<String> list_dates = new ArrayList<>();
     public ArrayList<Integer> list_hours = new ArrayList<>();
@@ -57,7 +59,7 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
     public ArrayList<String> list_year = new ArrayList<String>();
 
 
-    Spinner employee_home_month_spinner,employee_home_year_spinner;
+    Spinner employee_home_month_spinner,employee_home_year_spinner,employee_spinner_year_total;
     LocalDate currentdate = LocalDate.now();
     int currentmonth = currentdate.getMonthValue()-1;
 
@@ -109,21 +111,35 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
 
         employee_home_month_spinner = findViewById(R.id.employee_home_month_spinner);
         employee_home_year_spinner = findViewById(R.id.employee_home_year_spinner);
+        employee_spinner_year_total = findViewById(R.id.employee_spinner_year_total);
 
         fstore = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
         userID = fAuth.getCurrentUser().getUid();
 
-        SetProfilePic();
-        SetyearlyAttendance();
-        PopulateSpinnerMonth();
-        PopulateSpinnerYear();
+        DocumentReference db2 = fstore.collection("Admin").document("FGWUYBcerxMb456ecwuIxvbQJ8L2");
+        db2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+           @Override
+           public void onSuccess(DocumentSnapshot documentSnapshot) {
+               adminmaxminuts = documentSnapshot.getDouble("maxMinutes");
+
+               SetProfilePic();
+               SetyearlyAttendance();
+               PopulateSpinnerMonth();
+               PopulateSpinnerYear();
+               PopulateSpinnerYeartotal();
+           }
+        });
         employee_home_month_spinner.setOnItemSelectedListener(this);
         employee_home_year_spinner.setOnItemSelectedListener(this);
+        employee_spinner_year_total.setOnItemSelectedListener(this);
+
+
     }
 
     private void SetyearlyAttendance() {
+
         CollectionReference db1 = fstore.collection("users").document(userID).collection("Daily");
         db1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -132,14 +148,8 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
                     List<DocumentSnapshot> clist = queryDocumentSnapshots.getDocuments();
                     for (DocumentSnapshot d : clist) {
                         getattendancedata p = d.toObject(getattendancedata.class);
-                        list_hours.add(p.getHours());
+                        list_hours.add(p.getMinutes());
                         list_dates.add(p.getCheckin_date_());
-                    }
-                    ///Yearly calculation
-                    for(int i = 0; i < list_hours.size(); i++) {
-                        if (list_hours.get(i) > 200) {
-                            total_full_days = total_full_days + 1;
-                        }
                     }
                     for(int i = 0; i < list_dates.size(); i++) {
                         String [] dateParts = list_dates.get(i).split("-");
@@ -149,18 +159,51 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
                         list_year.add(year);
                     }
 
+                    for (int i = 0; i < list_dates.size(); i++) {
+                        if ( Objects.equals(list_year.get(i), selectedYeartotal)) {
+                            Log.d("List_h", ""+list_hours.get(i));
+                            Log.d("List_h_m", ""+adminmaxminuts);
+                            if (list_hours.get(i) > adminmaxminuts) {
+                                total_full_days = total_full_days + 1;
+                            }
+                            totaldays = totaldays+1;
+                        }
+                    }
+                    //Log.d("value_of_i", ""+i);
                     String yearly_presentdays = Integer.toString(total_full_days);
                     employee_home_yearly_present.setText(yearly_presentdays);
 
-                    String yearly_totaldays = Integer.toString(list_hours.size());
+                    String yearly_totaldays = Integer.toString(totaldays);
                     employee_home_yearly_total.setText(yearly_totaldays);
 
-                    String yearly_absent = Integer.toString(list_hours.size()-total_full_days);
+                    String yearly_absent = Integer.toString(totaldays-total_full_days);
                     employee_home_yearly_leaves.setText(yearly_absent);
                 }
 
             }
         });
+    }
+
+    private void onselectingyear(){
+        total_full_days = 0;
+        totaldays = 0;
+        for (int i = 0; i < list_dates.size(); i++) {
+            if ( Objects.equals(list_year.get(i), selectedYeartotal)) {
+                if (list_hours.get(i) > adminmaxminuts) {
+                    total_full_days = total_full_days + 1;
+                }
+                totaldays = totaldays+1;
+            }
+        }
+        //Log.d("value_of_i", ""+i);
+        String yearly_presentdays = Integer.toString(total_full_days);
+        employee_home_yearly_present.setText(yearly_presentdays);
+
+        String yearly_totaldays = Integer.toString(totaldays);
+        employee_home_yearly_total.setText(yearly_totaldays);
+
+        String yearly_absent = Integer.toString(totaldays-total_full_days);
+        employee_home_yearly_leaves.setText(yearly_absent);
     }
 
 
@@ -193,8 +236,19 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         employee_home_month_spinner.setAdapter(monthadapter);
         employee_home_month_spinner.setSelection(currentmonth);
     }
+    private void PopulateSpinnerYeartotal() {
+        ArrayAdapter<String> yearadapter = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.year_array));
+        yearadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        employee_spinner_year_total.setAdapter(yearadapter);
+    }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)  {
+        if(parent.getId()==R.id.employee_spinner_year_total){
+            int total_year_pos = parent.getSelectedItemPosition();
+            String[] x = {"2021" ,"2022", "2023", "2024","2025","2026" } ;
+            selectedYeartotal = x[total_year_pos];
+            onselectingyear();
+        }
         if(parent.getId()==R.id.employee_home_year_spinner){
             int year_pose = parent.getSelectedItemPosition();
             String[] x = {"2021" ,"2022", "2023", "2024","2025","2026" } ;
@@ -221,7 +275,7 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
                     for (int i = 0; i < list_dates.size(); i++) {
                         if (Objects.equals(list_month.get(i), selectedMonthPos) && Objects.equals(list_year.get(i), selectedYear)) {
                             total_month_full_days = total_month_full_days + 1;
-                            if (list_hours.get(i) > 0) {
+                            if (list_hours.get(i) > adminmaxminuts) {
                                 total_month_presentdays = total_month_presentdays + 1;
                             }
                         } else {
@@ -246,9 +300,6 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         }
 
 
-
-
-
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -268,9 +319,5 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         startActivity(intent);
     }
 
-    public void employee_home_to_SeeAttendance(View v) {
-        Intent intent = new Intent(this, employee_seeAttendance.class);
-        intent.putExtra("userID", fAuth.getCurrentUser().getUid());
-        startActivity(intent);
-    }
+
 }

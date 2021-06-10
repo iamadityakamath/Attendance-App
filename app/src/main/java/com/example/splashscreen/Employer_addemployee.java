@@ -25,7 +25,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.type.DateTime;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -40,6 +45,8 @@ public class Employer_addemployee extends AppCompatActivity {
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
     String userID1,userID;
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String data = df.format(new Date());
 
     @Override
 
@@ -147,6 +154,7 @@ public class Employer_addemployee extends AppCompatActivity {
                             userinfo.put("email",mail);
                             userinfo.put("phone",phone);
                             userinfo.put("userID",userID1);
+                            userinfo.put("Date of joining", data);
                             documentrefrence1.set(userinfo);
 
                             DocumentReference documentrefrence2 = fstore.collection("users").document(userID1);
@@ -157,6 +165,7 @@ public class Employer_addemployee extends AppCompatActivity {
                             userinfo2.put("isUser","1");
                             userinfo2.put("password",pass);
                             userinfo2.put("userID",userID1);
+                            userinfo2.put("Date of joining", data);
                             userinfo2.put("Employer_UserID",userID);
 
                             documentrefrence2.set(userinfo2).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -138,8 +138,8 @@ public class employee_checkinout extends AppCompatActivity {
         ///Set current date
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
-        current_date.setText(dateTime);
-//        current_date.setText("27-06-2021");
+//        current_date.setText(dateTime);
+        current_date.setText("12-06-2021");
 
         ///Set current time
         simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -354,15 +354,16 @@ public class employee_checkinout extends AppCompatActivity {
         geocoder = new Geocoder(employee_checkinout.this, Locale.getDefault());
 
         try {
-            addresses = geocoder.getFromLocation(19.2072513,72.8733597,1);
+            addresses = geocoder.getFromLocation(latitude,Longitude,1);
             Log.d("addresess_is", ""+addresses);
             String address = addresses.get(0).getAddressLine(0);
             String area = addresses.get(0).getLocality();
             String city = addresses.get(0).getAdminArea();
             String country = addresses.get(0).getCountryName();
             String postalcode = addresses.get(0).getPostalCode();
-            full_address = address;
+            full_address = (address+" "+area+" "+city+" "+country+" "+postalcode).toString();
             LocationAdress.setText(full_address);
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -432,31 +433,7 @@ public class employee_checkinout extends AppCompatActivity {
             getLastLocation();
         }
     }
-///ON START
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        db1 = fstore.collection("users").document(userID).collection("Daily").document(current_date.getText().toString());
-//        db1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-////                Log.d("valueof", "value of x is "+x);
-////                Log.d("valueof", "value of y is "+y);
-////                if (x == 0 ) {
-////                    checkin.setVisibility(View.VISIBLE);
-////                    checkout.setVisibility(View.INVISIBLE);
-////                    x = 1;
-////                }
-////                if (y == 0 ) {
-////                    checkin.setVisibility(View.INVISIBLE);
-////                    checkout.setVisibility(View.VISIBLE);
-////                    y = 1;
-////                }
-//            }
-//        });
-//    }
+
 
     ///Go to different pages
     public void employee_checkinout_to_home(View v) {

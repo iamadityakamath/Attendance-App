@@ -114,7 +114,8 @@ public class employee_seeAttendance extends AppCompatActivity implements Adapter
                         export_list_checkin_loc.add(p.getCheckin_location_1());
                         export_list_checkout.add(p.getCheckout_time_2());
                         export_list_checkout_loc.add(p.getCheckout_location_2());
-                        export_list_hours.add(p.getHours());
+                        export_list_hours.add(p.getMinutes());
+                        Log.d("export_list_hours", ""+export_list_hours);
                         export_list_checkin_address.add(p.getCheckin_Adress1());
                         export_list_checkout_address.add(p.getCheckout_Adress_2());
                     }
@@ -175,7 +176,7 @@ public class employee_seeAttendance extends AppCompatActivity implements Adapter
         for (int i = 0; i < export_list_date.size(); i++){
             if(Objects.equals(export_check_list_month.get(i),selectedMonthPos)){
                 if (Objects.equals(export_check_list_year.get(i), selectedYear)) {
-                    MonthData.append("\n" + export_list_date.get(i) + ", " + export_list_checkin.get(i) + ", "  +export_list_checkin_address.get(i)+", "+export_list_checkout.get(i) + ", " + export_list_checkout_address.get(i)+", "+export_list_hours.get(i) + "," + export_list_extra_time.get(i));
+                    MonthData.append("\n" + export_list_date.get(i) + ", " + export_list_checkin.get(i) + ", "  +"\""+export_list_checkin_address.get(i)+"\""+" ,"+export_list_checkout.get(i) + ", " +"\""+  export_list_checkout_address.get(i)+"\""+ ", "+export_list_hours.get(i) + "," + export_list_extra_time.get(i));
                 }
             }
         }
@@ -223,7 +224,7 @@ public class employee_seeAttendance extends AppCompatActivity implements Adapter
         }
         data.append("Date,Checkin Time,Checkin Location ,Checkout time,Checkout Location , Minutes, Extra Time");
         for(int i = 0; i<export_list_date.size(); i++){
-            data.append("\n" + export_list_date.get(i) + ", " + export_list_checkin.get(i) + ", "  +export_list_checkin_address.get(i)+", "+export_list_checkout.get(i) + ", " +  export_list_checkout_address.get(i)+ ", "+export_list_hours.get(i) + "," + export_list_extra_time.get(i));
+            data.append("\n" + export_list_date.get(i) + ", " + export_list_checkin.get(i) + ", "  +"\""+export_list_checkin_address.get(i)+"\""+" ,"+export_list_checkout.get(i) + ", " +"\""+  export_list_checkout_address.get(i)+"\""+ ", "+export_list_hours.get(i) + "," + export_list_extra_time.get(i));
         }
 
         try{
