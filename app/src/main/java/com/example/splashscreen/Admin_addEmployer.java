@@ -156,7 +156,7 @@ public class Admin_addEmployer extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(Admin_addEmployer.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                                    //senEmail(fnmame,mail,pass);
+                                    senEmail(fnmame,newmail,pass);
                                 }
                             });
 

@@ -43,7 +43,10 @@ public class splash extends AppCompatActivity {
                     if (documentSnapshot.getString("isUser") != null){
                         startActivity(new Intent(getApplicationContext(),employee_home.class));
                         finish();
-                    };
+                    }
+                    else{
+                        button.setVisibility(View.VISIBLE);
+                    }
                 }
             });
 
@@ -71,6 +74,9 @@ public class splash extends AppCompatActivity {
                     };
                 }
             });
+        }
+        else{
+            button.setVisibility(View.VISIBLE);
         }
 
 

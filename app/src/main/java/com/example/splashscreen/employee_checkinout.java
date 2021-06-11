@@ -105,26 +105,7 @@ public class employee_checkinout extends AppCompatActivity {
         userID = fAuth.getCurrentUser().getUid();
 
         //get office start and stopTime
-        DocumentReference db2 = fstore.collection("Admin").document("FGWUYBcerxMb456ecwuIxvbQJ8L2");
-        db2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                OfficeStartTime =documentSnapshot.getString("OfficeStartTime");
-                OfficeStopTime = documentSnapshot.getString("OfficeStopTime");
-                maxMinutes =  documentSnapshot.getDouble("maxMinutes");
-                String[] y = OfficeStartTime.split(":");
-                offstarttime = (Integer.parseInt(y[0])*3600  + Integer.parseInt(y[1])*60  + Integer.parseInt(y[2]) );
-                String[] z =OfficeStopTime.split(":");
-                offstoptime = (Integer.parseInt(z[0])*3600  + Integer.parseInt(z[1])*60  + Integer.parseInt(z[2]) );
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(employee_checkinout.this, "Office start and stop time not defined", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent (employee_checkinout.this, employee_home.class);
-                startActivity(intent);
-            }
-        });
+
 
         //  get the location
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -139,7 +120,7 @@ public class employee_checkinout extends AppCompatActivity {
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
 //        current_date.setText(dateTime);
-        current_date.setText("12-06-2021");
+        current_date.setText("24-01-2021");
 
         ///Set current time
         simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -151,35 +132,56 @@ public class employee_checkinout extends AppCompatActivity {
         String[] x = CurrentTime.toString().split(":");
         int currtime = (Integer.parseInt(x[0])*3600  + Integer.parseInt(x[1])*60  + Integer.parseInt(x[2]) );
 
-//
-
-        db1 = fstore.collection("users").document(userID).collection("Daily").document(current_date.getText().toString());
-        db1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference db2 = fstore.collection("Admin").document("FGWUYBcerxMb456ecwuIxvbQJ8L2");
+        db2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.getString("checkin_time_1") == null) {
-                    checkin.setVisibility(View.VISIBLE);
-                    checkout.setVisibility(View.INVISIBLE);
-                }
-                if (documentSnapshot.getString("checkin_time_1") != null) {
-                    checkin.setVisibility(View.INVISIBLE);
-                    checkout.setVisibility(View.VISIBLE);
-                }
-                if ((documentSnapshot.getString("checkin_time_1") != null) && documentSnapshot.getString("checkout_time_1")!=null){
-                    if(view_buttons==0){
-                        checkin.setVisibility(View.VISIBLE);
-                        checkout.setVisibility(View.INVISIBLE);
+                OfficeStartTime =documentSnapshot.getString("OfficeStartTime");
+                OfficeStopTime = documentSnapshot.getString("OfficeStopTime");
+                maxMinutes =  documentSnapshot.getDouble("maxMinutes");
+                String[] y = OfficeStartTime.split(":");
+                offstarttime = (Integer.parseInt(y[0])*3600  + Integer.parseInt(y[1])*60  + Integer.parseInt(y[2]) );
+                String[] z =OfficeStopTime.split(":");
+                offstoptime = (Integer.parseInt(z[0])*3600  + Integer.parseInt(z[1])*60  + Integer.parseInt(z[2]) );
+
+                db1 = fstore.collection("users").document(userID).collection("Daily").document(current_date.getText().toString());
+                db1.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.getString("checkin_time_1") == null) {
+                            checkin.setVisibility(View.VISIBLE);
+                            checkout.setVisibility(View.INVISIBLE);
+                        }
+                        if (documentSnapshot.getString("checkin_time_1") != null) {
+                            checkin.setVisibility(View.INVISIBLE);
+                            checkout.setVisibility(View.VISIBLE);
+                        }
+                        if ((documentSnapshot.getString("checkin_time_1") != null) && documentSnapshot.getString("checkout_time_1")!=null){
+                            if(view_buttons==0){
+                                checkin.setVisibility(View.VISIBLE);
+                                checkout.setVisibility(View.INVISIBLE);
+                            }
+                            if (view_buttons ==1){
+                                checkin.setVisibility(View.INVISIBLE);
+                                checkout.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        if(currtime>offstoptime || currtime<offstarttime){
+                            checkin.setVisibility(View.INVISIBLE);
+                        }
                     }
-                    if (view_buttons ==1){
-                        checkin.setVisibility(View.INVISIBLE);
-                        checkout.setVisibility(View.VISIBLE);
-                    }
-                }
-//                if(currtime>offstoptime || currtime<offstarttime){
-//                    checkin.setVisibility(View.INVISIBLE);
-//                }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(employee_checkinout.this, "Office start and stop time not defined", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent (employee_checkinout.this, employee_home.class);
+                startActivity(intent);
             }
         });
+
+
 
 
 
