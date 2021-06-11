@@ -37,6 +37,14 @@ public class Admin_Employer implements Serializable {
         this.pass = pass;
     }
 
+    public Admin_Employer(String fname, String email, String phone, String userID) {
+        this.fname = fname;
+        this.UserID = userID;
+        this.email = email;
+        this.phone = phone;
+        //this.pass = pass;
+    }
+
     /*public String getId() {
         return id;
     }
@@ -69,5 +77,4 @@ public class Admin_Employer implements Serializable {
 
 
 }
-
 

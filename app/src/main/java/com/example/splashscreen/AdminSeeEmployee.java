@@ -1,12 +1,21 @@
 package com.example.splashscreen;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,10 +30,14 @@ public class AdminSeeEmployee extends AppCompatActivity {
     private AdminEmployeeAdapter aseAdapter;
     private ArrayList<AdminEmployee> adminEmployeeList;
     private String EmployeeID;
-    public Admin_Employer items = null;
+    public AdminEmployee items = null;
+
+    EditText asesearchh;
+    CharSequence asesearchC = "";
 
     FirebaseAuth asefAuth;
     FirebaseFirestore asedb;
+    String r;
 
 
     @Override
@@ -43,12 +56,19 @@ public class AdminSeeEmployee extends AppCompatActivity {
         aseRecyclerView.setHasFixedSize(true);
         aseRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        asesearchh = findViewById(R.id.edittextEmployee);
+
+
+
         adminEmployeeList = new ArrayList<>();
         aseAdapter = new AdminEmployeeAdapter(this, adminEmployeeList);
 
         aseRecyclerView.setAdapter(aseAdapter);
 
-        asedb.collection("Employer").document(getIntent().getStringExtra("employeruserID")).collection("Employees").get()
+        Intent intent = getIntent();
+        r = intent.getStringExtra("employeruserID");
+        Log.d("employeruserID","" + r);
+        asedb.collection("Employer").document(r).collection("Employees").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -68,6 +88,66 @@ public class AdminSeeEmployee extends AppCompatActivity {
                         }
                     }
                 });
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation3);
+        bottomNavigationView.setSelectedItemId(R.id.admin_calendar_nav);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.admin_Dashboad_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_add_user_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_addEmployer.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_search_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_calendar_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_Profile_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        //search
+        asesearchh.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                aseAdapter.getFilter().filter(s);
+                asesearchC = s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
     }
 }

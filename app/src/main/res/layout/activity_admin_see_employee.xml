@@ -8,14 +8,63 @@
     tools:context=".AdminSeeEmployee">
 
 
+    <EditText
+        android:id="@+id/edittextEmployee"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/blank_white_box"
+        android:drawableLeft="@drawable/ic_search"
+        android:paddingLeft="20dp"
+        android:paddingRight="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:paddingStart="20dp"
+        android:paddingEnd="10dp"
+        android:drawableStart="@drawable/ic_search" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/admin_EMPLOYER_EMPLOYEE_recyclerView"
+        android:layout_width="411dp"
+        android:layout_height="594dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="35dp"
+        android:paddingBottom="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="65dp"
+        android:layout_height="62dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/bg"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@drawable/item_selecter"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:menu="@menu/admin_nav" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

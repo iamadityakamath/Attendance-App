@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employer_search extends AppCompatActivity {
+
     private String userID;
     private RecyclerView mRecyclerView;
     private ExampleAdapter mAdapter;
@@ -144,60 +145,7 @@ public class Employer_search extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        /*mAdapter.setOnItemClickListener(new ExampleAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                //startActivity( new Intent(MainActivity.this, EmployerSeeEmployeeDetails.class));
-                Intent intent = new Intent(getApplicationContext(), EmployerSeeEmployeeDetails.class);
-                startActivity(intent);
-                //changeItem(position,"Clicked");
-            }
-        });*/
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-        return super.onCreateOptionsMenu(menu);
     }
 
 
-    ///Intent
-    public void employerhome_to_addemployee(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_addemployee.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employerhome_to_employer_profile(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_profile.class);
-        startActivity(intent);
-        finish();
-    }
-    public void employerhome_to_employer_calender(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Employer_calender.class);
-        startActivity(intent);
-        finish();
-    }
 }

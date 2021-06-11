@@ -3,23 +3,32 @@ package com.example.splashscreen;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,11 +46,12 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
     StorageReference storagerefrence;
     Admin_Employer Items = null;
     String userID;
-    public Button button;
 
     private Admin_Employer adminEmployer;
     FirebaseUser Employer;
 
+    ImageView admin_see_employer_image;
+    public CardView aeupdate,aedelete,button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,41 +68,96 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
 
-        userID = fAuth.getCurrentUser().getUid();
+        //userID = fAuth.getCurrentUser().getUid();
+        Log.d("hbdsfv", ""+adminEmployer.getUserID());
+        Log.d("hbdsfvjkjj", ""+userID);
+        SetProfilePic();
         Employer = fAuth.getCurrentUser();
 
         editTextName = findViewById(R.id.Employer_Detail_name);
         editTextEmail = findViewById(R.id.Employer_Detail_Email);
-        editTextPass = findViewById(R.id.Employer_Detail_Pass);
         editTextPhone = findViewById(R.id.Employer_Detail_Phone);
-        editTextUserID = findViewById(R.id.Employer_Detail_UserID);
 
         button = findViewById(R.id.Employer_Detail_Employee_Button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UpdateViewDelete_Employer.this, AdminSeeEmployee.class);
-                intent.putExtra("employeruserID", Items.getUserID());
-                startActivity(intent);
-            }
 
-        });
 
         editTextName.setText(adminEmployer.getFname());
         editTextEmail.setText(adminEmployer.getEmail());
-        editTextPass.setText(adminEmployer.getPass());
         editTextPhone.setText(String.valueOf(adminEmployer.getPhone()));
-        editTextUserID.setText(String.valueOf(adminEmployer.getUserID()));
 
 
-        findViewById(R.id.Employer_Detail_Update_Button).setOnClickListener((View.OnClickListener) this);
-        findViewById(R.id.Employer_Detail_Delete_Button).setOnClickListener((View.OnClickListener) this);
-        //findViewById(R.id.Employer_Detail_Employee_Button2).setOnClickListener((View.OnClickListener) this);
+        admin_see_employer_image = findViewById(R.id.admin_see_employer_image);
+
+        aeupdate = (CardView) findViewById(R.id.Employer_Detail_Update_Button);
+        aedelete = (CardView) findViewById(R.id.Employer_Detail_Delete_Button);
+        button = (CardView) findViewById(R.id.Employer_Detail_Employee_Button2);
+
+        aeupdate.setOnClickListener(this);
+        aedelete.setOnClickListener(this);
+        button.setOnClickListener(this);
+
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation3);
+        bottomNavigationView.setSelectedItemId(R.id.admin_calendar_nav);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.admin_Dashboad_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_add_user_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_addEmployer.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_search_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_calendar_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_Profile_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
     }
 
+    private void SetProfilePic() {
+        StorageReference profileRef;
+        if (storagerefrence.child("users/" + adminEmployer.getUserID() + "/Profile.jpg") == null) {
 
+            return;
+        }
+        storagerefrence.child("users/" + adminEmployer.getUserID() + "/Profile.jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).transform(new CircleTransform()).into(admin_see_employer_image);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("pic_doesnot_exsist", "" + e);
+            }
+        });
+    }
 
-    private boolean hasValidationErrors(String name, String email, String pass, String phone, String userID) {
+    private boolean hasValidationErrors(String name, String email, String phone) {
         if (name.isEmpty()) {
             editTextName.setError("Name required");
             editTextName.requestFocus();
@@ -105,11 +170,11 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
             return true;
         }
 
-        if (pass.isEmpty()) {
+        /*if (pass.isEmpty()) {
             editTextPass.setError("Pass required");
             editTextPass.requestFocus();
             return true;
-        }
+        }*/
 
         if (phone.isEmpty()) {
             editTextPhone.setError("Phone required");
@@ -129,32 +194,36 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
     private void updateAdmin_Employer() {
         String fname = editTextName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
-        String pass = editTextPass.getText().toString().trim();
+        //String pass = editTextPass.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
-        String userID = editTextUserID.getText().toString().trim();
+        //String userID = editTextUserID.getText().toString().trim();
 
-        if (!hasValidationErrors(fname, email, pass, phone, userID)) {
+        if (!hasValidationErrors(fname, email, phone)) {
 
-            Admin_Employer p = new Admin_Employer (
-                    fname,email,pass,phone,userID
-            );
+//            Admin_Employer p = new Admin_Employer (
+//                    fname,email,phone, userID
+//            );
 
             //asedb.collection("Employer").document(items.getUserID()).collection("Employees").get()
             db.collection("Employer").document(adminEmployer.getUserID())
                     .update(
-                            "fname", p.getFname(),
-                            "email", p.getEmail(),
-                            "pass", p.getPass(),
-                            "phone", p.getPhone(),
-                            "UserID", p.getUserID()
+                            "fname", adminEmployer.getFname(),
+                            "email", adminEmployer.getEmail(),
+                            //"pass", p.getPass(),
+                            "phone", adminEmployer.getPhone(),
+                            "UserID", adminEmployer.getUserID()
 
                     )
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toast.makeText(UpdateViewDelete_Employer.this, "Employer Account Updated", Toast.LENGTH_LONG).show();
+
                         }
+
                     });
+            Intent intent= new Intent(this, Admin_home.class);
+            startActivity(intent);
         }
     }
 
@@ -187,7 +256,9 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
                 ad.show();
                 break;
             case R.id.Employer_Detail_Employee_Button2:
-                Intent intent = new Intent(this, AdminSeeEmployee.class);
+                Intent intent = new Intent(UpdateViewDelete_Employer.this, AdminSeeEmployee.class);
+                intent.putExtra("employeruserID", Items.getUserID());
+                startActivity(intent);
                 break;
         }
     }
@@ -206,34 +277,6 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
                         }
                     }
                 });
-    }
-
-
-
-    ///Intent
-    public void Employer_Detail_to_admin_add_employer(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Admin_addEmployer.class);
-        startActivity(intent);
-        finish();
-    }
-    public void Employer_Detail_to_admin_home_button(View v) {
-        //Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Admin_home.class);
-        startActivity(intent);
-        finish();
-    }
-    public void Employer_Detail_to_admin_profile(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Admin_Profile.class);
-        startActivity(intent);
-        finish();
-    }
-    public void Employer_Detail_to_admin_calender(View v) {
-        Toast.makeText(this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, Admin_Calendar.class);
-        startActivity(intent);
-        finish();
     }
 
 }
