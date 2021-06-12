@@ -8,11 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -28,30 +32,24 @@ import java.util.List;
 
 public class Employer_search extends AppCompatActivity {
 
-    private String userID;
-    private RecyclerView mRecyclerView;
-    private ExampleAdapter mAdapter;
-    private ArrayList<ExampleItem> mExampleList;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private ExampleItem exampleItem;
-    private String isUser;
-
-
+    String userID;
+    public RecyclerView mRecyclerView;
+    public ExampleAdapter mAdapter;
+    public ArrayList<ExampleItem> mExampleList;
+    EditText employerSearchbutton;
+    CharSequence searchE = "";
     FirebaseAuth fAuth;
-    FirebaseFirestore fstore;
-    private Object ExampleItem;
+    FirebaseFirestore db1;
 
-    public Employer_search(ArrayList<com.example.splashscreen.ExampleItem> mExampleList) {
-        this.mExampleList = mExampleList;
-    }
 
-    public Employer_search() {
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_search);
+
+
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         bottomNavigationView.setSelectedItemId(R.id.employer_home);
 
@@ -88,21 +86,23 @@ public class Employer_search extends AppCompatActivity {
                 return false;
             }
         });
-
+        db1 = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
-        fstore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
 
-        mRecyclerView = findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        employerSearchbutton = findViewById(R.id.EmployerSearchBar);
 
         mExampleList = new ArrayList<>();
         mAdapter = new ExampleAdapter(mExampleList);
 
         mRecyclerView.setAdapter(mAdapter);
 
-        fstore.collection("Employer").document(userID).collection("Employees").get()
+
+        db1.collection("Employer").document(userID).collection("Employees").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -111,7 +111,6 @@ public class Employer_search extends AppCompatActivity {
                             for(DocumentSnapshot d : list){
                                 ExampleItem p = d.toObject(ExampleItem.class);
                                 mExampleList.add(p);
-
                             }
                             mAdapter.notifyDataSetChanged();
 
@@ -119,33 +118,22 @@ public class Employer_search extends AppCompatActivity {
                     }
                 });
 
+        employerSearchbutton.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        createExampleList();
-        buildRecyclerView();
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mAdapter.getFilter().filter(s);
+                searchE = s;
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                }
+        });
     }
-
-    private void createExampleList() {
-
-    }
-
-    public void changeItem(int position, String text) {
-        mExampleList.get(position).getFname();
-        mAdapter.notifyItemChanged(position);
-    }
-
-
-
-    public void buildRecyclerView(){
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new ExampleAdapter(mExampleList);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-
-    }
-
-
 }

@@ -67,7 +67,6 @@ public class Admin_Employer_ADAPTER extends RecyclerView.Adapter<Admin_Employer_
     public void onBindViewHolder(@NonNull @NotNull Admin_Employer_ADAPTER.AdminEmployerViewHolder holder, int position) {
         Admin_Employer AE = filteredList.get(position);
         holder.textViewName.setText(AE.getFname());
-        Admin_Employer current = filteredList.get(position);
         holder.textViewName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
