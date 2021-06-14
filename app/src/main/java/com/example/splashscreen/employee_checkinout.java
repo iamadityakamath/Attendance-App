@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -88,6 +90,35 @@ public class employee_checkinout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_checkinout);
 
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation2);
+        bottomNavigationView.setSelectedItemId(R.id.employee_home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employee_home:
+                        startActivity(new Intent(getApplicationContext(),employee_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_profile:
+                        startActivity(new Intent(getApplicationContext(),employee_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_calendar:
+                        startActivity(new Intent(getApplicationContext(),employee_calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
 
         latitudeTextView = findViewById(R.id.latitude_pos);
@@ -119,8 +150,7 @@ public class employee_checkinout extends AppCompatActivity {
         ///Set current date
         simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
-//        current_date.setText(dateTime);
-        current_date.setText("24-01-2021");
+        current_date.setText(dateTime);
 
         ///Set current time
         simpleDateFormat = new SimpleDateFormat("HH:mm:ss");

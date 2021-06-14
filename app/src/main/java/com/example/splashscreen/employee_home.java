@@ -135,7 +135,7 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
         employee_home_year_spinner.setOnItemSelectedListener(this);
         employee_spinner_year_total.setOnItemSelectedListener(this);
 
-
+        
     }
 
     private void SetyearlyAttendance() {
