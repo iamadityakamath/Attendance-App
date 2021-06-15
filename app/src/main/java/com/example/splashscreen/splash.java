@@ -44,9 +44,6 @@ public class splash extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(),employee_home.class));
                         finish();
                     }
-                    else{
-                        button.setVisibility(View.VISIBLE);
-                    }
                 }
             });
 

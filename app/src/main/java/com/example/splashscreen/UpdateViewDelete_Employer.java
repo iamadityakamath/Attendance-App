@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,11 +37,11 @@ import static com.google.firebase.firestore.FieldValue.delete;
 
 public class UpdateViewDelete_Employer extends AppCompatActivity implements View.OnClickListener{
 
-    private EditText editTextName;
-    private EditText editTextEmail;
-    private EditText editTextPass;
-    private EditText editTextPhone;
-    private EditText editTextUserID;
+    private TextView editTextName;
+    private TextView editTextEmail;
+    private TextView editTextPass;
+    private TextView editTextPhone;
+    private TextView editTextUserID;
     FirebaseAuth fAuth;
     private FirebaseFirestore db;
     StorageReference storagerefrence;
@@ -71,12 +72,14 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
         //userID = fAuth.getCurrentUser().getUid();
         Log.d("hbdsfv", ""+adminEmployer.getUserID());
         Log.d("hbdsfvjkjj", ""+userID);
+        Log.d("hbdree",""+ adminEmployer.getFname());
         SetProfilePic();
-        Employer = fAuth.getCurrentUser();
+        //Employer = fAuth.getCurrentUser();
 
         editTextName = findViewById(R.id.Employer_Detail_name);
         editTextEmail = findViewById(R.id.Employer_Detail_Email);
         editTextPhone = findViewById(R.id.Employer_Detail_Phone);
+        //editTextUserID = findViewById(R.id.Employer_Detail_userid);
 
         button = findViewById(R.id.Employer_Detail_Employee_Button2);
 
@@ -84,15 +87,16 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
         editTextName.setText(adminEmployer.getFname());
         editTextEmail.setText(adminEmployer.getEmail());
         editTextPhone.setText(String.valueOf(adminEmployer.getPhone()));
+        //editTextUserID.setText(adminEmployer.getUserID());
 
 
         admin_see_employer_image = findViewById(R.id.admin_see_employer_image);
 
-        aeupdate = (CardView) findViewById(R.id.Employer_Detail_Update_Button);
+        //aeupdate = (CardView) findViewById(R.id.Employer_Detail_Update_Button);
         aedelete = (CardView) findViewById(R.id.Employer_Detail_Delete_Button);
         button = (CardView) findViewById(R.id.Employer_Detail_Employee_Button2);
 
-        aeupdate.setOnClickListener(this);
+        //aeupdate.setOnClickListener(this);
         aedelete.setOnClickListener(this);
         button.setOnClickListener(this);
 
@@ -152,12 +156,12 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("pic_doesnot_exsist", "" + e);
+                Log.d("pic_doesnot_exist", "" + e);
             }
         });
     }
 
-    private boolean hasValidationErrors(String name, String email, String phone) {
+    private boolean hasValidationErrors(String name, String email, String phone, String userID) {
         if (name.isEmpty()) {
             editTextName.setError("Name required");
             editTextName.requestFocus();
@@ -191,22 +195,23 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
     }
 
 
-    private void updateAdmin_Employer() {
+    /*private void updateAdmin_Employer() {
         String fname = editTextName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         //String pass = editTextPass.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
-        //String userID = editTextUserID.getText().toString().trim();
+        String userID = editTextUserID.getText().toString().trim();
 
-        if (!hasValidationErrors(fname, email, phone)) {
+        if (!hasValidationErrors(fname, email, phone, userID)) {
 
-//            Admin_Employer p = new Admin_Employer (
-//                    fname,email,phone, userID
-//            );
+            Admin_Employer p = new Admin_Employer (
+                    fname,email,phone,userID
+            );
 
             //asedb.collection("Employer").document(items.getUserID()).collection("Employees").get()
             db.collection("Employer").document(adminEmployer.getUserID())
                     .update(
+
                             "fname", adminEmployer.getFname(),
                             "email", adminEmployer.getEmail(),
                             //"pass", p.getPass(),
@@ -225,14 +230,14 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
             Intent intent= new Intent(this, Admin_home.class);
             startActivity(intent);
         }
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.Employer_Detail_Update_Button:
-                updateAdmin_Employer();
-                break;
+            //case R.id.Employer_Detail_Update_Button:
+            //   updateAdmin_Employer();
+            //   break;
 
             case R.id.Employer_Detail_Delete_Button:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);

@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -48,6 +51,46 @@ public class Employer_edit_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_edit_profile);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.employer_calendar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_calendar:
+                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_Profile:
+                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_home:
+                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
         ename = findViewById(R.id.empoyer_edit_profile_name);
         ephone = findViewById(R.id.empoyer_edit_profile_phoneno);
         epass = findViewById(R.id.empoyer_edit_profile_password);

@@ -7,11 +7,12 @@
     android:background="@drawable/gradient_drawable"
     tools:context=".Admin_addEmployer">
 
+
     <ImageView
         android:id="@+id/admin_addemplyee_pic"
         android:layout_width="306dp"
         android:layout_height="152dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,7 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_addemplyee_pic" />
+
     <EditText
         android:id="@+id/admin_add_name"
         android:layout_width="300dp"
@@ -49,23 +51,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_add_textview" />
 
-  <EditText
-      android:id="@+id/admin_add_password"
-      android:layout_width="300dp"
-      android:layout_height="40dp"
-      android:layout_marginTop="24dp"
-      android:background="@drawable/input_background_shape"
-      android:ems="10"
-      android:gravity="center"
-      android:hint="Password"
-      android:inputType="text"
-      android:text="Pass@123"
-      android:textColor="#FFFFFF"
-      android:textColorHint="#FFFFFF"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.495"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/admin_add_name" />
+    <EditText
+        android:id="@+id/admin_add_password"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input_background_shape"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="text"
+        android:text="Pass@123"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_name" />
 
     <EditText
         android:id="@+id/admin_add_phone"
@@ -80,7 +82,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_add_password" />
 
@@ -97,7 +99,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.585"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_add_phone" />
 
@@ -105,7 +107,8 @@
         android:id="@+id/admin_add_regesterbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="9dp"
         android:shadowColor="#000000"
         android:text="Register"
         android:textColor="#008FFF"
@@ -114,12 +117,13 @@
         android:textColorLink="@color/black"
         app:backgroundTint="#000000"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/navigation3"
+        app:layout_constraintBottom_toTopOf="@+id/Regester_progressBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_email"
+        app:layout_constraintVertical_bias="0.0"
         app:rippleColor="#FFFFFF"
         app:strokeColor="#0C0707" />
-
 
     <ProgressBar
         android:id="@+id/Regester_progressBar"
@@ -128,16 +132,17 @@
         android:layout_height="48dp"
         android:layout_marginStart="188dp"
         android:layout_marginLeft="188dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="189dp"
         android:layout_marginRight="189dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
         android:indeterminateTint="@color/black"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/admin_add_regesterbutton"
+        app:layout_constraintBottom_toTopOf="@+id/navigation3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/admin_add_email" />
+        app:layout_constraintTop_toBottomOf="@+id/admin_add_regesterbutton" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation3"
         android:layout_width="match_parent"

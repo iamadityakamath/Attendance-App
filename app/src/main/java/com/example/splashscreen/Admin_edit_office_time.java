@@ -1,16 +1,20 @@
 package com.example.splashscreen;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -55,6 +59,46 @@ public class Admin_edit_office_time extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fstore = FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation3);
+        bottomNavigationView.setSelectedItemId(R.id.admin_calendar_nav);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.admin_Dashboad_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_add_user_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_addEmployer.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_search_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_calendar_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.admin_Profile_nav:
+                        startActivity(new Intent(getApplicationContext(),Admin_Profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
 
         DocumentReference db2 = fstore.collection("Admin").document("FGWUYBcerxMb456ecwuIxvbQJ8L2");
         db2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

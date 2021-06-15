@@ -37,34 +37,10 @@
         app:layout_constraintTop_toBottomOf="@+id/Holidaylist_txtx"
         app:layout_constraintVertical_bias="0.24">
 
-
         <CalendarView
-
             android:id="@+id/employee_calendarView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
-            android:addStatesFromChildren="true"
-            android:animationCache="true"
-            android:background="#FFFFFF"
-            android:clickable="true"
-            android:clipChildren="true"
-            android:clipToPadding="true"
-            android:fitsSystemWindows="false"
-            android:focusable="true"
-            android:focusedMonthDateColor="#28ABCC"
-            android:hapticFeedbackEnabled="true"
-            android:selectedDateVerticalBar="@color/black"
-            android:selectedWeekBackgroundColor="#B2D13F"
-            android:showWeekNumber="true"
-            android:unfocusedMonthDateColor="#28ABCC"
-            android:weekNumberColor="#CD1717"
-            android:weekSeparatorLineColor="#28ABCC" />
-
+            android:layout_height="wrap_content" />
     </androidx.cardview.widget.CardView>
 
 
