@@ -96,6 +96,11 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
                         startActivity(new Intent(getApplicationContext(),employee_calendar.class));
                         overridePendingTransition(0,0);
                         return true;
+                    case R.id.employee_signout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),login_page.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        overridePendingTransition(0,0);
+                        finish();
                 }
                 return false;
             }

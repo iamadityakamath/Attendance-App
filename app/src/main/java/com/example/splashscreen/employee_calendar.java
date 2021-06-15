@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class employee_calendar extends AppCompatActivity{
@@ -48,6 +49,12 @@ public class employee_calendar extends AppCompatActivity{
 
                     case R.id.employee_calendar:
                         return true;
+
+                    case R.id.employee_signout:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getApplicationContext(),login_page.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                        overridePendingTransition(0,0);
+                        finish();
                 }
                 return false;
             }

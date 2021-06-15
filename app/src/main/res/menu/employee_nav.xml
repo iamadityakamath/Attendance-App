@@ -13,8 +13,7 @@
     <item android:id="@+id/employee_profile"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile" />
-
-
-
-
+    <item android:id="@+id/employee_signout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="Sign Out" />
 </menu>
