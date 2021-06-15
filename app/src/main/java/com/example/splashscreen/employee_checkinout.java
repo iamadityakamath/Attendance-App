@@ -158,6 +158,7 @@ public class employee_checkinout extends AppCompatActivity {
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
         current_date.setText(dateTime);
 
+
         ///Set current time
         simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         dateTime = simpleDateFormat.format(calendar.getTime()).toString();
