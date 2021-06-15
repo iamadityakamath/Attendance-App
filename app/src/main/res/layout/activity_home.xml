@@ -23,7 +23,7 @@
 
     <Button
         android:id="@+id/Checkin_button"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginStart="29dp"
         android:layout_marginLeft="29dp"
@@ -37,7 +37,7 @@
         android:textColorHighlight="#F3F3F3"
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="12sp"
         app:backgroundTint="#000000"
         app:cornerRadius="90dp"
         app:elevation="5dp"
@@ -423,7 +423,7 @@
 
     <Button
         android:id="@+id/employeehome_viewattendance"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
@@ -431,7 +431,7 @@
         android:text="View Attendance"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:backgroundTint="#090000"
         app:cornerRadius="90dp"

@@ -117,11 +117,14 @@ public class employee_profile extends AppCompatActivity {
         intent.putExtra("fullname",fullname.getText().toString());
         intent.putExtra("email",email.getText().toString());
         intent.putExtra("phone",phone.getText().toString());
-        startActivity(intent); }
+        startActivity(intent);
+        overridePendingTransition(0,0);
+    }
 
     public void employee_profile_to_login(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(),login_page.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        overridePendingTransition(0,0);
         finish();
     }
     public  void employee_Call(View v) {   Uri u = Uri.parse("tel: 12345678");

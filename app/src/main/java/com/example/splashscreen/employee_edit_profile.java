@@ -4,12 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -50,6 +53,33 @@ public class employee_edit_profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_edit_profile);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employee_home:
+                        startActivity(new Intent(getApplicationContext(),employee_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_profile:
+                        startActivity(new Intent(getApplicationContext(),employee_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employee_calendar:
+                        startActivity(new Intent(getApplicationContext(),employee_calendar.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         ename = findViewById(R.id.empoyee_edit_profile_name);
         ephone = findViewById(R.id.empoyee_edit_profile_phoneno);

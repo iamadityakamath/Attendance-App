@@ -14,35 +14,38 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center_horizontal"
-        android:fontFamily="sans-serif-black"
+
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="24dp"
         android:text="Latitude:"
         android:textColor="#000000"
         android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/latitude_pos"
-        app:layout_constraintStart_toStartOf="@+id/textView7" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/longitue_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
         android:text="Longitude:"
         android:textColor="#000000"
         android:textSize="18dp"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/longitude_pos"
-        app:layout_constraintStart_toStartOf="@+id/latitude_textView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latitude_textView" />
 
     <TextView
         android:id="@+id/longitude_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="32dp"
         android:text="Longitude will be here! "
-        android:textColor="#f5f5f5"
+        android:textColor="#378538"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/longitue_textView"
         app:layout_constraintTop_toBottomOf="@+id/latitude_pos" />
@@ -51,24 +54,29 @@
         android:id="@+id/latitude_pos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="110dp"
         android:text="Latitude will be here! "
-        android:textColor="#f5f5f5"
+        android:textColor="#378538"
         android:textSize="18dp"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/longitude_pos"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintStart_toEndOf="@+id/latitude_textView"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="sans-serif-black"
         android:text="Location"
         android:textColor="#000000"
         android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,8 +86,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-black"
         android:text="Check in"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -92,17 +99,15 @@
         app:cornerRadius="90dp"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/navigation2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/Checkout_button"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-black"
         android:text="Check Out"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -115,42 +120,46 @@
         app:cornerRadius="90dp"
         app:iconTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/navigation2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/Date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif-black"
         android:text="Date"
         android:textColor="#000000"
         android:textSize="22dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/longitue_textView" />
+        app:layout_constraintTop_toBottomOf="@+id/Locationtxt" />
+
 
     <TextView
         android:id="@+id/Date_op"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="51dp"
+        android:gravity="left"
         android:text="Display the date here!"
-        android:textColor="#FFFFFF"
+        android:textColor="#378538"
         android:textSize="18dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/Date_textview"
-        app:layout_constraintEnd_toEndOf="@+id/time_op" />
+        app:layout_constraintStart_toEndOf="@+id/Date_textview"
+        app:layout_constraintTop_toBottomOf="@+id/Locationtxt_input" />
 
     <TextView
         android:id="@+id/Time_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
         android:text="Time"
+        android:fontFamily="sans-serif-black"
         android:textColor="#000000"
         android:textSize="22dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,41 +169,42 @@
         android:id="@+id/time_op"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="38dp"
+
         android:gravity="left"
         android:text="Display the Time here!"
-        android:textColor="#FFFFFF"
+        android:textColor="#378538"
         android:textSize="18dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/Time_textview"
-        app:layout_constraintEnd_toEndOf="@+id/longitude_pos"
-        app:layout_constraintStart_toStartOf="@+id/longitude_pos" />
-
+        app:layout_constraintStart_toEndOf="@+id/Time_textview"
+        app:layout_constraintTop_toBottomOf="@+id/Date_op" />
 
     <Button
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginBottom="124dp"
         android:onClick="getLocation"
         android:text="maps"
         app:backgroundTint="#249829"
         app:cornerRadius="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/navigation2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_op" />
+        app:layout_constraintTop_toBottomOf="@+id/Time_textview" />
 
     <TextView
         android:id="@+id/Locationtxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-black"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
         android:text="Location: "
         android:textColor="#000000"
         android:textSize="18dp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/longitue_textView" />
 
@@ -202,17 +212,14 @@
         android:id="@+id/Locationtxt_input"
         android:layout_width="205dp"
         android:layout_height="79dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="32dp"
         android:text="Address"
         android:textColor="#378538"
         android:textSize="12sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Locationtxt"
         app:layout_constraintTop_toBottomOf="@+id/longitude_pos" />
 
