@@ -133,21 +133,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAtteandance"
         android:layout_width="match_parent"
-        android:layout_height="530dp">
-
+        android:layout_height="480dp">
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation2"
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:layout_gravity="bottom"
+        android:layout_gravity="top"
         android:layout_margin="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="37dp"
         android:background="@drawable/bg"
         app:itemIconSize="32dp"
         app:itemIconTint="@drawable/item_selecter"
