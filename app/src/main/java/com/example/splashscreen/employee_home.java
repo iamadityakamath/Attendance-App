@@ -316,8 +316,15 @@ public class employee_home extends AppCompatActivity implements AdapterView.OnIt
 
     public void employee_Checkinoutpg(View v) {
         Intent intent = new Intent(this, employee_checkinout.class);
+        overridePendingTransition(0,0);
         startActivity(intent);
     }
+    public void employee_viewattendance(View v) {
+        Intent intent = new Intent(this, EmployeeViewAttendance.class);
+        overridePendingTransition(0,0);
+        startActivity(intent);
+    }
+
 
 
 }

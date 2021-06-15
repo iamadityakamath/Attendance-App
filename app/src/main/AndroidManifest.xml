@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launchercircle"
         android:supportsRtl="true"
         android:theme="@style/Theme.Splashscreen">
-        <activity android:name=".Admin_edit_office_time"></activity>
+        <activity android:name=".EmployeeViewAttendance"></activity>
+        <activity android:name=".Admin_edit_office_time" />
         <activity android:name=".Admin_edit_profile" />
         <activity android:name=".AdminSeeEmployee" />
         <activity android:name=".UpdateViewDelete_Employer" />

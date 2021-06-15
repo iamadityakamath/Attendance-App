@@ -23,8 +23,10 @@
 
     <Button
         android:id="@+id/Checkin_button"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
         android:fontFamily="sans-serif-black"
@@ -35,17 +37,17 @@
         android:textColorHighlight="#F3F3F3"
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:backgroundTint="#000000"
         app:cornerRadius="90dp"
         app:elevation="5dp"
         app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/employeehome_viewattendance"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/employeehome_viewattendance"
         app:layout_constraintTop_toBottomOf="@+id/employee_home_profilepic"
-        app:layout_constraintVertical_bias="0.129" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/Cardview1"
@@ -374,28 +376,28 @@
 
 
     Button
-        android:id="@+id/employee_seeAttendancebutton"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="40dp"
-        android:onClick="employee_home_to_SeeAttendance"
-        android:text="Download Attendance"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#F3F3F3"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="12sp"
-        app:backgroundTint="#000000"
-        app:cornerRadius="90dp"
-        app:elevation="5dp"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/Cardview1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/employee_home_profilepic"
-        app:layout_constraintVertical_bias="0.111" />
+    android:id="@+id/employee_seeAttendancebutton"
+    android:layout_width="150dp"
+    android:layout_height="50dp"
+    android:layout_marginStart="24dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginTop="40dp"
+    android:onClick="employee_home_to_SeeAttendance"
+    android:text="Download Attendance"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+    android:textColor="#FFFFFF"
+    android:textColorHighlight="#F3F3F3"
+    android:textColorHint="#FFFFFF"
+    android:textColorLink="#FFFFFF"
+    android:textSize="12sp"
+    app:backgroundTint="#000000"
+    app:cornerRadius="90dp"
+    app:elevation="5dp"
+    app:iconTint="#FFFFFF"
+    app:layout_constraintBottom_toTopOf="@+id/Cardview1"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/employee_home_profilepic"
+    app:layout_constraintVertical_bias="0.111" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation2"
@@ -418,5 +420,26 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/employee_nav" />
+
+    <Button
+        android:id="@+id/employeehome_viewattendance"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:onClick="employee_viewattendance"
+        android:text="View Attendance"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:backgroundTint="#090000"
+        app:cornerRadius="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.298" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
