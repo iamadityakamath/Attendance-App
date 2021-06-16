@@ -1,6 +1,7 @@
 package com.example.splashscreen;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -24,9 +25,14 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -47,6 +53,7 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
     StorageReference storagerefrence;
     Admin_Employer Items = null;
     String userID;
+    String Admin_email,Admin_pass,Admin_userid;
 
     private Admin_Employer adminEmployer;
     FirebaseUser Employer;
@@ -68,6 +75,17 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
         db = FirebaseFirestore.getInstance();
         fAuth = FirebaseAuth.getInstance();
         storagerefrence = FirebaseStorage.getInstance().getReference();
+
+        DocumentReference documentReference = db.collection("Admin").document("FGWUYBcerxMb456ecwuIxvbQJ8L2");
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
+                Admin_email = documentSnapshot.getString("email");
+                Admin_pass = documentSnapshot.getString("admin_pass");
+                Log.d("Delete_from_data", " "+ Admin_email);
+                Log.d("Delete_from_data", " "+ Admin_pass);
+            }
+        });
 
         //userID = fAuth.getCurrentUser().getUid();
         Log.d("hbdsfv", ""+adminEmployer.getUserID());
@@ -240,25 +258,25 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
             //   break;
 
             case R.id.Employer_Detail_Delete_Button:
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Are you sure you want to delete this account?");
-                builder.setMessage("Deletion is permanent");
+                AlertDialog.Builder deleteuser = new AlertDialog.Builder(v.getContext());
+                deleteuser.setTitle("Are you sure you want to delete this account?");
+                deleteuser.setMessage("Deletion is permanent");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                deleteuser.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         deleteAdmin_Employer();
                     }
                 });
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                deleteuser.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
-                AlertDialog ad = builder.create();
-                ad.show();
+
+                deleteuser.show();
                 break;
             case R.id.Employer_Detail_Employee_Button2:
                 Intent intent = new Intent(UpdateViewDelete_Employer.this, AdminSeeEmployee.class);
@@ -271,17 +289,44 @@ public class UpdateViewDelete_Employer extends AppCompatActivity implements View
 
 
     private void deleteAdmin_Employer() {
-        db.collection("Employer").document(Items.getUserID()).delete()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull @NotNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(UpdateViewDelete_Employer.this,"Employer Account Deleted", Toast.LENGTH_LONG).show();
-                            finish();
-                            startActivity(new Intent(UpdateViewDelete_Employer.this, Admin_Search.class));
+        String x = Items.getUserID();
+        DocumentReference documentrefrence2 = db.collection("Employer").document(x);
+        documentrefrence2.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.getString("isEmployer") != null) {
+                    String ee_email = documentSnapshot.getString("email");
+                    String ee_pass = documentSnapshot.getString("pass");
+                    fAuth.signInWithEmailAndPassword(ee_email, ee_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            FirebaseUser usera = FirebaseAuth.getInstance().getCurrentUser();
+                            usera.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        loginagain();
+                                    }
+                                }
+
+                            });
                         }
-                    }
-                });
+                    });
+                }
+            }
+        });
+    }
+
+    public void loginagain(){
+        fAuth.signInWithEmailAndPassword(Admin_email, Admin_pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess (AuthResult authResult){
+                Admin_userid = fAuth.getCurrentUser().getUid();
+                Log.d("Delete_from_data", "logged in using ");
+                Toast.makeText(UpdateViewDelete_Employer.this, "Account Deleted Successfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(UpdateViewDelete_Employer.this, Admin_home.class));
+            }
+        });
     }
 
 }
