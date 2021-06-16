@@ -1,11 +1,13 @@
 package com.example.splashscreen;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -75,6 +78,44 @@ public class employee_seeAttendance extends AppCompatActivity implements Adapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_see_attendance);
+
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+            @SuppressLint("NonConstantResourceId")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+
+                    case R.id.employer_Dashboad:
+                        startActivity(new Intent(getApplicationContext(),Employer_home.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_add_user:
+                        startActivity(new Intent(getApplicationContext(),Employer_addemployee.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_calendar:
+                        startActivity(new Intent(getApplicationContext(),Employer_calender.class));
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.employer_Profile:
+                        startActivity(new Intent(getApplicationContext(),Employer_profile.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.employer_home:
+                        startActivity(new Intent(getApplicationContext(),Employer_search.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
         employee_getattendance_month_spinner = findViewById(R.id.employee_getattendance_month_spinner);
         employee_getattendance_year_spinner = findViewById(R.id.employee_getattendance_year_spinner);
 
