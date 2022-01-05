@@ -30,8 +30,10 @@ Challenges Faced:
 
 
 Project Presentation:
+
 https://github.com/iamadityakamath/Attendance-App/blob/master/Attendance%20App%20Presentation.pdf
 
 User Guide:
-[embed] https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf [/embed]
+
+[embed]https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf[/embed]
 
