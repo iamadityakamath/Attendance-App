@@ -28,4 +28,10 @@ Challenges Faced:
 4.  Send login access through mail from employer to the new employees added.(from app itself)
 
 
+
+Project Presentation:
 https://github.com/iamadityakamath/Attendance-App/blob/master/Attendance%20App%20Presentation.pdf
+
+User Guide:
+[embed] https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf [/embed]
+
