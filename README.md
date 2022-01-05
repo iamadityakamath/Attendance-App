@@ -1,5 +1,6 @@
 # Attendance-App
 
+<img src="Images/Cover Image.png">
 
 Problem Statement:
 
