@@ -40,7 +40,6 @@ https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf
 
 Image ScreenShots:
 
-<img src= "![image](https://user-images.githubusercontent.com/52027423/148175887-3f0280d0-86ff-4bac-ad44-e5af311087fc.png)
-">
+![image](https://user-images.githubusercontent.com/52027423/148175887-3f0280d0-86ff-4bac-ad44-e5af311087fc.png)
 
 
