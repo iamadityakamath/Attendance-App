@@ -2,9 +2,11 @@
 
 
 Problem Statement:
+
 Due to pandemic, it is hard for corporates to keep track of its employee's attendance due to work from home regulation. To tackle this and to find if the employees are actually working from home and not on vacation, I built an attendance app which stamps in the geolocation of the user. 
 
 Project Description:
+
 Built an attendance app in which the employer can get all the detailed information of the employee like information of clock-in or clock-out using geo location.  There are three users:
 1. Admin
 2. Employer
