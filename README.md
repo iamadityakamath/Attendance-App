@@ -35,5 +35,11 @@ https://github.com/iamadityakamath/Attendance-App/blob/master/Attendance%20App%2
 
 User Guide:
 
-[embed]https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf[/embed]
+https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf
+
+
+Image ScreenShots:
+
+<img src= "">
+
 
