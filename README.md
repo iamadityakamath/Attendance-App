@@ -40,5 +40,5 @@ https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf
 
 Image ScreenShots:
 
-<img src="Images/Email.png">
-<img src="Images/Profile Edit.png">
+<img src="Images/Email.png" width = 300>
+<img src="Images/Profile Edit.jpg" width=200>
