@@ -40,12 +40,11 @@ https://github.com/iamadityakamath/Attendance-App/blob/master/User%20Guide.pdf
 
 Image ScreenShots:
 
-<img src="Images/Splash Screen.jpg" width = 200>
-<img src="Images/Login.jpg" width = 200>
+<img src="Images/Splash Screen.jpg" width = 200> <img src="Images/Login.jpg" width = 200>
 <img src="Images/Email.png" width = 200>
 <img src="Images/Employee Dash.jpg" width = 200>
 <img src="Images/Location Details.jpg" width = 200>
-<img src="Images/Employee Details.jpg" width = 200>
+<img src="Images/Employee details.jpg" width = 200>
 <img src="Images/Profile Edit.jpg" width = 200>
 <img src="Images/Employer Dashboard.jpg" width = 200>
 <img src="Images/Employer add employee.jpg" width=200>
