@@ -31,7 +31,7 @@ Challenges Faced:
 
 
 Project Presentation:
-<object data="/Attendance App Presentation.pdf" type="application/pdf">
+<object data="/Attendance App Presentation.pdf" type="application/pdf"></object>
 https://github.com/iamadityakamath/Attendance-App/blob/master/Attendance%20App%20Presentation.pdf
 
 
