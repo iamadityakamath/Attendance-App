@@ -26,3 +26,6 @@ Challenges Faced:
 2.  Learn firebase
 3.  Single page login access for all users.
 4.  Send login access through mail from employer to the new employees added.(from app itself)
+
+
+https://github.com/iamadityakamath/Attendance-App/blob/master/Attendance%20App%20Presentation.pdf
